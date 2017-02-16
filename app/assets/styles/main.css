@@ -1,0 +1,17 @@
+body {
+  background: #f4f4f4;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+#main h1 {
+  padding: 20px;
+  border-bottom: 1px dashed #aaa;
+  color: rgba(0,0,0,0.6);
+  font-weight: 100;
+  font-family: sans-serif;
+}
+
+#main {
+  text-align: center;
+}
