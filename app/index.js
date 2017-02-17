@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { render } from 'react-dom'
 
-const Root = () => {
-  return (
-    <div>Hello World</div>
-  )
+class Root extends Component {
+  componentDidMount() {
+    // INSERT API CALL TO YOUR INTERNAL API
+  }
+
+  render() {
+    return (
+      <div>Hello World</div>
+    )
+  }
 }
 
 render(<Root />, document.getElementById('main'))
