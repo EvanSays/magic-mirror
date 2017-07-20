@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import {testFavorites} from './testReducer'
+import { setWeatherData } from './weatherReducer'
 
 export default combineReducers({
-  testFavorites
+  setWeatherData
 });
