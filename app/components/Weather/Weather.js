@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-
 class Weather extends Component {
   constructor() {
     super()
@@ -8,16 +7,28 @@ class Weather extends Component {
 
   componentDidMount() {
     this.props.getWeatherData();
-    this.props.getNewsData();
-    this.props.getTimeDate();
 
   }
 
   render(){
+    let hourly = []
+    if(this.props.weatherObj.hourly) {
+      hourly = this.props.weatherObj.hourly.map((hour, i) => {
+        return <h2 key={i*10}>{hour}</h2>
+      })
+    }
 
-    console.log(this.props.newsObj);
     return(
-      <h1>WEATHER</h1>
+      <div className="weather">
+        <div className="current">
+          <h2>{this.props.weatherObj.temp}</h2>
+          <h2>icon{this.props.weatherObj.icon}</h2>
+        </div>
+        <p>{this.props.weatherObj.city}</p>
+        <div className="hourly">
+          {hourly}
+        </div>
+      </div>
     )
   }
 }

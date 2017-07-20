@@ -1,5 +1,6 @@
 import WeatherData  from '../data/scrubbers'
 import { wundergroundKey, newsApiKey } from '../data/apiKeys'
+import moment from 'moment'
 
 export const fetchWeatherData = () => {
   return(dispatch) => {
@@ -25,7 +26,10 @@ export const fetchNewsData = () => {
       return res
     })
     .then(res => res.json())
-    .then(obj => dispatch(setNewsData(obj)))
+    .then(obj => {
+      console.log(obj);
+      dispatch(setNewsData(obj))
+    })
   }
 }
 
