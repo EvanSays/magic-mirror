@@ -11,7 +11,7 @@ class App extends Component {
 
   render(){
     return(
-      <div>
+      <div className='wrapper'>
         <WeatherContainer />
         <DateTodayContainer />
         <NewsContainer />

@@ -11,6 +11,6 @@ export class WeatherData{
 
 export class NewsData{
   constructor(obj) {
-    this.articles = obj.articles
+    this.articles = obj.articles.slice(0,5)
   }
 }
