@@ -10,12 +10,11 @@ class News extends Component {
   }
 
   render(){
-    console.log('newsObj', this.props.newsObj.articles);
     let article = [];
 
     if(this.props.newsObj.articles) {
-      article = this.props.newsObj.articles.map(news => {
-        return <div><h3>{news.author}</h3><p>{news.description}</p></div>
+      article = this.props.newsObj.articles.map((news, i) => {
+        return <div key={i*10}><h3>{news.author}</h3><h2>{news.title}</h2><p>{news.description}</p></div>
       })
     }
 
