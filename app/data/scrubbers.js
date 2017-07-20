@@ -1,4 +1,4 @@
-class WeatherData{
+export class WeatherData{
   constructor(obj) {
     this.city = obj.current_observation.display_location.city,
     this.icon = obj.current_observation.icon,
@@ -9,4 +9,8 @@ class WeatherData{
   }
 }
 
-export default WeatherData
+export class NewsData{
+  constructor(obj) {
+    this.articles = obj.articles
+  }
+}

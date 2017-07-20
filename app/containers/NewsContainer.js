@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getNewsData: () => {
-      dispatch(fetchNewsData)
+      dispatch(fetchNewsData())
     }
   }
 }
