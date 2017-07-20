@@ -26,17 +26,12 @@ body {
 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   text-align: center;
   border: 1px solid pink;
 }
 
-/*.header {
-  display: flex;
-  justify-content: space-between;
-  height: 200px;
-}*/
 /*=======================================
 >>>>>>>>  WEATHER  <<<<<<<<
 ========================================*/
@@ -45,18 +40,12 @@ body {
   background: darkblue;
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
-  /*display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid black;
-  width: 25%;*/
 }
 
 .weather .current {
   display: flex;
   justify-content: space-between;
   font-size: 30px;
-
 }
 
 .weather .current h2 {
@@ -93,7 +82,7 @@ body {
 
 .news {
   grid-column: 1;
-  grid-row: 2 / span 1;
+  grid-row: 3 ;
 }
 
 .news .wrapper {
