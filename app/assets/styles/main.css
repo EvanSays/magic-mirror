@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   background: #f4f4f4;
   font-family: sans-serif;
@@ -14,4 +17,24 @@ body {
 
 #main {
   text-align: center;
+}
+
+.weather {
+  border: 1px solid black;
+  width: 35%;
+}
+
+.weather .current {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather .hourly {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-around;
+}
+.weather .hourly h2 {
+  display: flex;
+  flex-direction: column;
 }
