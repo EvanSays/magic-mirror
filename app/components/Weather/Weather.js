@@ -8,13 +8,14 @@ class Weather extends Component {
 
   componentDidMount() {
     this.props.getWeatherData();
+    this.props.getNewsData();
     this.props.getTimeDate();
-    // console.log(day, month, date);
 
   }
 
   render(){
-    // console.log(this.props.weatherObj);
+
+    console.log(this.props.newsObj);
     return(
       <h1>WEATHER</h1>
     )

@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 // import { loginUser, fetchLoginUser, loggedIn } from '../actions';
 import Weather from '../components/Weather/Weather';
-import { fetchWeatherData, fetchTimeDate } from '../actions'
+import { fetchWeatherData, fetchTimeDate, fetchNewsData } from '../actions'
 
 const mapStateToProps = (state) => {
   return {
-    weatherObj: state.setWeatherData
+    weatherObj: state.setWeatherData,
+    newsObj: state.setNewsData
   };
 };
 
@@ -16,6 +17,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getTimeDate: () => {
       dispatch(fetchTimeDate())
+    },
+    getNewsData: () => {
+      dispatch(fetchNewsData())
     }
   };
 };
