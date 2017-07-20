@@ -1,5 +1,6 @@
 import { WeatherData, NewsData } from '../data/scrubbers'
 import { wundergroundKey, newsApiKey } from '../data/apiKeys'
+import moment from 'moment'
 
 export const fetchWeatherData = () => {
   return(dispatch) => {
@@ -29,23 +30,21 @@ export const fetchNewsData = () => {
   }
 }
 
-export const fetchTimeDate = () => {
-  return(dispath) => {
-    const now = new Date();
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+export const fetchDateTodayData = () => {
+  return(dispatch) => {
+    dispatch(setDateTodayData(moment().format('dddd, h:mm:ss a')))
+  }
+}
 
-    const day = days[ now.getDay() ];
-    const month = months[ now.getMonth() ];
-    const date = now.getDate()
-    return [day,month,date];
-    // NOTE: NEED TO DISPATCH TO ANOTHER ACTION AND SET IT TO STATE WITH PROPS DOWN
+export const setDateTodayData = (dataObj) => {
+  return {
+    type: 'DATE_TODAY_DATA',
+    dateTodayData: dataObj
   }
 }
 
 
 export const setNewsData = (dataObj) => {
-  console.log(dataObj);
   return {
     type:'NEWS_DATA',
     newsData: dataObj
@@ -56,5 +55,12 @@ export const setWeatherData = (dataObj) => {
   return {
     type: 'WEATHER_DATA',
     weatherData: dataObj
+  }
+}
+
+export const setTimeData = (dataObj) => {
+  return {
+    type: 'TIME_DATA',
+    timeData: dataObj
   }
 }
