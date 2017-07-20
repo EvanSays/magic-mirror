@@ -1,40 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600');
+
+@import url('https://fonts.googleapis.com/css?family=Anaheim|Jura:300,400,600|Lekton|Rajdhani:300,400,600');
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500');
+
 * {
   box-sizing: border-box;
 }
+
+h1, h2, h3, h4, p{
+  margin: 0;
+  color: white;
+}
+
 body {
-  background: #f4f4f4;
-  font-family: sans-serif;
+  background: black;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 2px;
   font-weight: 100;
 }
-
-#main h1 {
-  padding: 20px;
-  border-bottom: 1px dashed #aaa;
-  color: rgba(0,0,0,0.6);
-  font-weight: 100;
-  font-family: sans-serif;
-}
-
 #main {
   text-align: center;
 }
 
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  text-align: center;
+  border: 1px solid pink;
+}
+
+/*.header {
+  display: flex;
+  justify-content: space-between;
+  height: 200px;
+}*/
+/*=======================================
+>>>>>>>>  WEATHER  <<<<<<<<
+========================================*/
 .weather {
+  border: 1px solid pink;
+  background: darkblue;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  /*display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 1px solid black;
-  width: 35%;
+  width: 25%;*/
 }
 
 .weather .current {
   display: flex;
   justify-content: space-between;
+  font-size: 30px;
+
 }
 
-.weather .hourly {
-  font-size: 14px;
-  display: flex;
-  justify-content: space-around;
+.weather .current h2 {
+  margin: 25px;
 }
-.weather .hourly h2 {
+
+.weather p {
+  font-size: 20px;
+}
+.weather .hourly-container{
+  display: flex;
+
+  justify-content: space-around;
+  margin-top: 24px;
+}
+
+.weather .hourly-container .hourly h2 {
   display: flex;
   flex-direction: column;
+  font-size: 12px;
+}
+
+/*=======================================
+>>>>>>>>  DATE <<<<<<<<
+========================================*/
+.date {
+  grid-column: 4 / span 1;
+  grid-row: 1;
+}
+
+/*=======================================
+>>>>>>>>  NEWS  <<<<<<<<
+========================================*/
+
+.news {
+  grid-column: 1;
+  grid-row: 2 / span 1;
+}
+
+.news .wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.news .wrapper .header h3,
+.news .wrapper .header h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.news .wrapper p {
+  position: relative;
+  overflow: hidden;
 }
