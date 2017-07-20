@@ -10,13 +10,22 @@ class News extends Component {
   }
 
   render(){
+    console.log('newsObj', this.props.newsObj.articles);
+    let article = [];
+
+    if(this.props.newsObj.articles) {
+      article = this.props.newsObj.articles.map(news => {
+        return <div><h3>{news.author}</h3><p>{news.description}</p></div>
+      })
+    }
+
 
     return(
       <div>
-        <h1>NEWS Component</h1>
+      {article}
       </div>
     )
   }
 }
 
-export default News
+export default News;

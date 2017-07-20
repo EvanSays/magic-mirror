@@ -11,8 +11,8 @@ class App extends Component {
   render(){
     return(
       <div>
-        <NewsContainer />
         <WeatherContainer />
+        <NewsContainer />
       </div>
     )
   }

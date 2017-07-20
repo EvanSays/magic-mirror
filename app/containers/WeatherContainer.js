@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import Weather from '../components/Weather/Weather';
-import { fetchWeatherData, fetchTimeDate} from '../actions'
+import { fetchWeatherData } from '../actions'
 
 const mapStateToProps = (state) => {
+
   return {
     weatherObj: state.setWeatherData
   };
