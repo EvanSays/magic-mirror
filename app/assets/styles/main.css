@@ -4,6 +4,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500');
 
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 * {
   box-sizing: border-box;
 }
@@ -15,9 +18,9 @@ h1, h2, h3, h4, p{
 
 body {
   background: black;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   letter-spacing: 2px;
-  font-weight: 100;
+  font-weight: 200;
 }
 #main {
   text-align: center;
@@ -26,31 +29,33 @@ body {
 
 .wrapper {
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 50px 1fr 1fr 1fr 1fr 50px;
+  grid-template-rows: 50px 1fr 1fr 1fr 1fr 50px;
   text-align: center;
-  border: 1px solid pink;
 }
 
 /*=======================================
 >>>>>>>>  WEATHER  <<<<<<<<
 ========================================*/
 .weather {
-  border: 1px solid pink;
-  background: darkblue;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .weather .current {
   display: flex;
   justify-content: space-between;
-  font-size: 30px;
+  font-size: 50px;
 }
 
 .weather .current h2 {
-  margin: 25px;
+  margin: 0 0 50px 50px;
 }
+.weather .current img {
+  margin: 0 50px 50px 0;
+  width: 84px;
+}
+
 
 .weather p {
   font-size: 20px;
@@ -65,38 +70,64 @@ body {
 .weather .hourly-container .hourly h2 {
   display: flex;
   flex-direction: column;
-  font-size: 12px;
+  font-size: 14px;
 }
-
+.weather .hourly-container .hourly img {
+  width: 50px;
+  height: 50px;
+}
 /*=======================================
 >>>>>>>>  DATE <<<<<<<<
 ========================================*/
 .date {
-  grid-column: 4 / span 1;
-  grid-row: 1;
+  grid-column: 5;
+  grid-row: 2;
 }
-
+.date h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.date h2 {
+  font-size: 30px;
+  font-weight: 200;
+}
 /*=======================================
 >>>>>>>>  NEWS  <<<<<<<<
 ========================================*/
 
 .news {
-  grid-column: 1;
-  grid-row: 3 ;
+  grid-column:  2 / span 3;
+  grid-row: 4;
+  align-self: start;
+  text-align: left;
 }
 
 .news .wrapper {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
+  margin-bottom: 10px;
+}
+.news .wrapper .header{
+  display: flex;
+
 }
 
 .news .wrapper .header h3,
 .news .wrapper .header h2 {
+  font-weight: 200;
   margin: 0;
-  font-size: 14px;
+  font-size: 18px;
+  text-align: left;
 }
 
-.news .wrapper p {
-  position: relative;
-  overflow: hidden;
+.news .wrapper .header p {
+  margin: 0 5px 0 5px;
 }
+
+/*.news .wrapper p {
+  font-weight: 300;
+  font-size: 14px;
+  overflow: hidden;
+  text-align: left;
+}*/

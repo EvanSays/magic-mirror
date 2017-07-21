@@ -17,9 +17,9 @@ class News extends Component {
         return <div className="wrapper" key={i*10}>
                  <div className="header">
                    <h3>{news.author}</h3>
+                   <p>|</p>
                    <h2>{news.title}</h2>
                  </div>
-                 <p>{news.description}</p>
                </div>
       })
     }
