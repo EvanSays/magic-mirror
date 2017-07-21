@@ -1,12 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600');
-
-@import url('https://fonts.googleapis.com/css?family=Anaheim|Jura:300,400,600|Lekton|Rajdhani:300,400,600');
-
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500');
-
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
+
 * {
   box-sizing: border-box;
 }
@@ -40,6 +33,8 @@ body {
 .weather {
   grid-column: 2;
   grid-row: 2;
+  animation-name: weather;
+  animation-duration: 5s;
 }
 
 .weather .current {
@@ -56,13 +51,11 @@ body {
   width: 84px;
 }
 
-
 .weather p {
   font-size: 20px;
 }
 .weather .hourly-container{
   display: flex;
-
   justify-content: space-around;
   margin-top: 24px;
 }
@@ -76,12 +69,15 @@ body {
   width: 50px;
   height: 50px;
 }
+
 /*=======================================
 >>>>>>>>  DATE <<<<<<<<
 ========================================*/
 .date {
   grid-column: 5;
   grid-row: 2;
+  animation-name: date;
+  animation-duration: 5s;
 }
 .date h1 {
   font-size: 50px;
@@ -100,6 +96,8 @@ body {
   grid-row: 4;
   align-self: start;
   text-align: left;
+  animation-name: news;
+  animation-duration: 5s;
 }
 
 .news .wrapper {
@@ -125,9 +123,32 @@ body {
   margin: 0 5px 0 5px;
 }
 
-/*.news .wrapper p {
-  font-weight: 300;
-  font-size: 14px;
-  overflow: hidden;
-  text-align: left;
-}*/
+@keyframes weather {
+  from {
+    transform : translateX(-500px);
+  }
+
+  to {
+    transform : translateX(0px);
+  }
+}
+
+@keyframes date {
+  from {
+    transform : translateX(450px);
+  }
+
+  to {
+    transform : translateX(0px);
+  }
+}
+
+@keyframes news {
+  from {
+    transform : translateX(-1200px);
+  }
+
+  to {
+    transform : translateX(0px);
+  }
+}

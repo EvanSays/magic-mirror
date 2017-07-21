@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Skycons from 'react-skycons'
 
 class Weather extends Component {
   constructor() {
@@ -7,7 +8,6 @@ class Weather extends Component {
 
   componentDidMount() {
     this.props.getWeatherData();
-
   }
 
   render(){
@@ -25,6 +25,7 @@ class Weather extends Component {
       <div className="weather">
         <div className="current">
           <h2>{this.props.weatherObj.temp}</h2>
+          {/* <Skycons color='white' icon='PARTLY_CLOUDY_DAY' autoplay={true}/> */}
           <img src={this.props.weatherObj.icon} alt="icon"/>
         </div>
         <p>{this.props.weatherObj.city}</p>
