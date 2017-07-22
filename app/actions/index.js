@@ -34,7 +34,7 @@ export const fetchDarkSkyData = () => {
 
 export const fetchNewsData = () => {
   return(dispatch) => {
-    fetch(`https://newsapi.org/v1/articles?source=bbc-news&apiKey=${newsApiKey}`)
+    fetch(`https://newsapi.org/v1/articles?source=recode&apiKey=${newsApiKey}`)
     .then(res => {
       if(!res.ok) {
         throw Error(res.statusText)
@@ -42,7 +42,11 @@ export const fetchNewsData = () => {
       return res
     })
     .then(res => res.json())
-    .then(data => dispatch(setNewsData(new NewsData(data))))
+    .then(data => {
+      console.log(data);
+      return dispatch(setNewsData(new NewsData(data)))
+
+    })
   }
 }
 
