@@ -1,5 +1,5 @@
-import { WeatherData, NewsData } from '../data/scrubbers'
-import { wundergroundKey, newsApiKey } from '../data/apiKeys'
+import { WeatherData, NewsData, DarkSkyData } from '../data/scrubbers'
+import { wundergroundKey, newsApiKey, darkSkyKey } from '../data/apiKeys'
 import moment from 'moment'
 
 export const fetchWeatherData = () => {
@@ -15,6 +15,22 @@ export const fetchWeatherData = () => {
     .then(data => dispatch(setWeatherData(new WeatherData(data))))
   }
 }
+
+export const fetchDarkSkyData = () => {
+  return(dispatch) => {
+    fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkSkyKey}/39.750784,-104.996579`)
+      .then(res => {
+        if(!res.ok) {
+          throw Error(res.statusText)
+        }
+        return res
+      })
+    .then(res => res.json())
+    .then(data => dispatch(setWeatherData(new DarkSkyData(data))))
+  }
+}
+
+
 
 export const fetchNewsData = () => {
   return(dispatch) => {

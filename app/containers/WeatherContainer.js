@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Weather from '../components/Weather/Weather';
-import { fetchWeatherData } from '../actions'
+import { fetchDarkSkyData } from '../actions'
 
 const mapStateToProps = (state) => {
 
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getWeatherData: () => {
-      dispatch(fetchWeatherData())
+      dispatch(fetchDarkSkyData())
     }
   };
 };
