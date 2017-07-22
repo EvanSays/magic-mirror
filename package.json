@@ -26,6 +26,7 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "react-skycons": "^0.3.0",
     "redux": "^3.6.0",
+    "redux-implicit-oauth2": "^1.0.3",
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0"
   },

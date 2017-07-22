@@ -1,6 +1,7 @@
 import { WeatherData, NewsData } from '../data/scrubbers'
 import { wundergroundKey, newsApiKey } from '../data/apiKeys'
 import moment from 'moment'
+import { login, logout, authReducer as auth } from 'redux-implicit-oauth2'
 
 export const fetchWeatherData = () => {
   return(dispatch) => {
@@ -27,6 +28,31 @@ export const fetchNewsData = () => {
     })
     .then(res => res.json())
     .then(data => dispatch(setNewsData(new NewsData(data))))
+  }
+}
+
+export const fetchLogin = () => {
+  const config = {
+    url: "https://example.com/authorize",
+    client: "3adf36cf6067ebae50a4",
+    redirect: "https://example.com/callback.html",
+    scope: "some_scope"
+  }
+  return(dispath) => {
+    console.log('loggging In');
+    login(config)
+  }
+}
+export const fetchLogout = () => {
+  return(dispath) => {
+    console.log('logging Out');
+    logout()
+  }
+}
+
+export const fetchAuth = () => {
+  return(dispatch) => {
+    auth()
   }
 }
 
