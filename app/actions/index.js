@@ -1,5 +1,5 @@
-import { WeatherData, NewsData, DarkSkyData } from '../data/scrubbers'
-import { wundergroundKey, newsApiKey, darkSkyKey } from '../data/apiKeys'
+import { WeatherData, NewsData, DarkSkyData, GifyData } from '../data/scrubbers'
+import { wundergroundKey, newsApiKey, darkSkyKey, gifyKey } from '../data/apiKeys'
 import moment from 'moment'
 
 export const fetchWeatherData = () => {
@@ -30,8 +30,6 @@ export const fetchDarkSkyData = () => {
   }
 }
 
-
-
 export const fetchNewsData = () => {
   return(dispatch) => {
     fetch(`https://newsapi.org/v1/articles?source=recode&apiKey=${newsApiKey}`)
@@ -43,10 +41,34 @@ export const fetchNewsData = () => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       return dispatch(setNewsData(new NewsData(data)))
 
     })
+  }
+}
+
+export const fetchGifyData = () => {
+  console.log('in hereer');
+  return(dispatch) => {
+    fetch(`http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=${gifyKey}&limit=1`)
+    .then(res => {
+      if(!res.ok) {
+        throw Error(res.statusText)
+      }
+      return res
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(setGifyData(new GifyData(data)))
+    })
+  }
+}
+
+export const setGifyData = (dataObj) => {
+  console.log(dataObj);
+  return {
+    type: 'GIFY_DATA',
+    gifyData: dataObj
   }
 }
 
