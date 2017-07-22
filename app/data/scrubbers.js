@@ -15,6 +15,30 @@ export class NewsData{
   }
 }
 
+export class DarkSkyData{
+  constructor(obj) {
+    this.city = obj.timezone,
+    this.icon = darkSkyIconKeys[obj.currently.icon],
+    this.temp = obj.currently.temperature,
+    this.hourly = obj.hourly.data.slice(0,3).map(hour => {
+      return [ darkSkyIconKeys[hour.icon], hour.apparentTemperature ]
+    })
+  }
+}
+
+export const darkSkyIconKeys = {
+  'clear-day': 'CLEAR_DAY',
+  'clear-night': 'CLEAR_NIGHT',
+  'partly-cloudy-day': 'PARTLY_CLOUDY_DAY',
+  'partly-cloudy-night': 'PARTLY_CLOUDY_NIGHT',
+  'cloudy': 'CLOUDY',
+  'rain': 'RAIN',
+  'sleet': 'SLEET',
+  'snow': 'SNOW',
+  'wind': 'WIND',
+  'fog': 'FOG'
+}
+
 export const weatherIconKeys = {
   chanceofflurries: 'flurries-snow3',
   chancerain: 'chancerain3',
