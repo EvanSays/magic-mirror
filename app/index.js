@@ -7,9 +7,11 @@ import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
+import { authMiddleware } from 'redux-implicit-oauth2'
+
 
 const history = createHistory();
-const middleWare = [routerMiddleware(history), thunk];
+const middleWare = [routerMiddleware(history), thunk, authMiddleware];
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const store = createStore(
