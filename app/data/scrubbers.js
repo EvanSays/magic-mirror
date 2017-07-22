@@ -28,6 +28,12 @@ export class DarkSkyData{
   }
 }
 
+export class GifyData {
+  constructor(obj) {
+    this.url = obj.data.map(gif => gif.images.original.url)
+  }
+}
+
 export const darkSkyIconKeys = {
   'clear-day': 'CLEAR_DAY',
   'clear-night': 'CLEAR_NIGHT',
