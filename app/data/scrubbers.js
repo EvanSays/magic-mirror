@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export class WeatherData{
   constructor(obj) {
     this.city = obj.current_observation.display_location.city,
@@ -19,9 +21,9 @@ export class DarkSkyData{
   constructor(obj) {
     this.city = obj.timezone,
     this.icon = darkSkyIconKeys[obj.currently.icon],
-    this.temp = obj.currently.temperature,
-    this.hourly = obj.hourly.data.slice(0,3).map(hour => {
-      return [ darkSkyIconKeys[hour.icon], hour.apparentTemperature ]
+    this.temp = Math.ceil(obj.currently.temperature),
+    this.hourly = obj.hourly.data.slice(1,4).map(hour => {
+      return [ moment.unix(hour.time).format("h"), darkSkyIconKeys[hour.icon], Math.ceil(hour.apparentTemperature) ]
     })
   }
 }

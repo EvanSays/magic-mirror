@@ -46,10 +46,11 @@ body {
 .weather .current h2 {
   margin: 0 0 50px 50px;
 }
+
 .weather .current .icon {
-  margin: 0 50px 50px 0;
-  width: 200px;
-  height: 100px
+  margin: 0 0 50px 0;
+  width: 180px;
+  height: 90px
 }
 
 .weather p {
@@ -65,10 +66,12 @@ body {
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  font-weight: 200;
 }
 .weather .hourly-container .hourly .icon {
   width: 100px;
   height: 50px;
+  margin: 10px 0 10px 0;
 }
 
 /*=======================================
