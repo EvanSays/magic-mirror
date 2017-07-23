@@ -3,7 +3,6 @@ import Weather from '../components/Weather/Weather';
 import { fetchDarkSkyData } from '../actions'
 
 const mapStateToProps = (state) => {
-
   return {
     weatherObj: state.setWeatherData
   };

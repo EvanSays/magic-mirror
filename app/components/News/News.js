@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 class News extends Component {
   constructor() {
@@ -10,10 +11,11 @@ class News extends Component {
   }
 
   render(){
-    let article = [];
+    const { newsObj } = this.props;
 
-    if(this.props.newsObj.articles) {
-      article = this.props.newsObj.articles.map((news, i) => {
+    let article = [];
+    if(newsObj.articles) {
+      article = newsObj.articles.map((news, i) => {
         return <div className="wrapper" key={i*10}>
                  <div className="header">
                    <h3>News</h3>
@@ -30,6 +32,13 @@ class News extends Component {
       </div>
     )
   }
+}
+
+News.propTypes = {
+  newsObj: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 }
 
 export default News;
