@@ -19,7 +19,7 @@ export class NewsData{
 
 export class DarkSkyData{
   constructor(obj) {
-    this.city = obj.timezone,
+    this.city = obj.timezone.slice(obj.timezone.indexOf('/') + 1),
     this.icon = darkSkyIconKeys[obj.currently.icon],
     this.temp = Math.ceil(obj.currently.temperature),
     this.hourly = obj.hourly.data.slice(1,4).map(hour => {

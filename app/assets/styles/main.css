@@ -45,6 +45,7 @@ body {
 
 .weather .current h2 {
   margin: 0 0 50px 50px;
+  font-weight: 200;
 }
 
 .weather .current .icon {
@@ -86,6 +87,7 @@ body {
 .date h1 {
   font-size: 50px;
   margin-bottom: 20px;
+  font-weight: 200;
 }
 .date h2 {
   font-size: 30px;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 class Gifs extends Component {
   constructor() {
@@ -10,10 +11,11 @@ class Gifs extends Component {
   }
 
   render(){
-    let gifUrl = []
-    if(this.props.gifyObj) {
-      gifUrl = this.props.gifyObj.url
+    const { gifyObj } = this.props;
 
+    let gifUrl = []
+    if(gifyObj) {
+      gifUrl = gifyObj.url
     }
 
     return(
@@ -22,6 +24,13 @@ class Gifs extends Component {
       </div>
     )
   }
+}
+
+Gifs.propTypes = {
+  gifyObj: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 }
 
 export default Gifs;

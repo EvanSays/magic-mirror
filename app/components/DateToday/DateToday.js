@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import moment from 'moment'
+import PropTypes from 'prop-types';
 
 class DateToday extends Component {
   constructor(){
@@ -13,13 +14,21 @@ class DateToday extends Component {
   }
 
   render(){
+    const { dateObj } = this.props;
     return(
       <div className="date">
-        <h1>{this.props.dateObj[0]}</h1>
-        <h2>{this.props.dateObj[1]}</h2>
+        <h1>{dateObj[0]}</h1>
+        <h2>{dateObj[1]}</h2>
       </div>
     )
   }
+}
+
+DateToday.propTypes = {
+  dateObj: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 }
 
 export default DateToday;

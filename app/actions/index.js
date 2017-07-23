@@ -26,7 +26,9 @@ export const fetchDarkSkyData = () => {
         return res
       })
     .then(res => res.json())
-    .then(data => dispatch(setWeatherData(new DarkSkyData(data))))
+    .then(data => {
+      dispatch(setWeatherData(new DarkSkyData(data)))
+    })
   }
 }
 
@@ -42,7 +44,6 @@ export const fetchNewsData = () => {
     .then(res => res.json())
     .then(data => {
       return dispatch(setNewsData(new NewsData(data)))
-
     })
   }
 }
@@ -58,14 +59,12 @@ export const fetchGifyData = () => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data.data);
       dispatch(setGifyData(new GifyData(data)))
     })
   }
 }
 
 export const setGifyData = (dataObj) => {
-  console.log(dataObj);
   return {
     type: 'GIFY_DATA',
     gifyData: dataObj
@@ -76,7 +75,6 @@ export const fetchDateTodayData = () => {
   return(dispatch) => {
     const day = moment().format('dddd');
     const time = moment().format('h:mm:ss a');
-
     dispatch(setDateTodayData([day,time]))
   }
 }
@@ -97,6 +95,7 @@ export const setNewsData = (dataObj) => {
 }
 
 export const setWeatherData = (dataObj) => {
+
   return {
     type: 'WEATHER_DATA',
     weatherData: dataObj
