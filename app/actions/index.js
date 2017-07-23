@@ -48,9 +48,8 @@ export const fetchNewsData = () => {
 }
 
 export const fetchGifyData = () => {
-  console.log('in hereer');
   return(dispatch) => {
-    fetch(`http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=${gifyKey}&limit=1`)
+    fetch(`http://api.giphy.com/v1/gifs/random?api_key=${gifyKey}`)
     .then(res => {
       if(!res.ok) {
         throw Error(res.statusText)
@@ -59,6 +58,7 @@ export const fetchGifyData = () => {
     })
     .then(res => res.json())
     .then(data => {
+      console.log(data.data);
       dispatch(setGifyData(new GifyData(data)))
     })
   }

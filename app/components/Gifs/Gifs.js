@@ -10,15 +10,15 @@ class Gifs extends Component {
   }
 
   render(){
-    // let gifUrl = []
-    // if(this.props.gifyObj) {
-    // gifUrl = this.props.gifyObj.url
-    // return <img src={gifUrl} alt=""/>
-    // }
+    let gifUrl = []
+    if(this.props.gifyObj) {
+      gifUrl = this.props.gifyObj.url
+
+    }
 
     return(
-      <div className="news">
-
+      <div className="gif">
+        <img src={gifUrl} alt="random gif"/>
       </div>
     )
   }
