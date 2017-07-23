@@ -16,14 +16,13 @@ class News extends Component {
       article = this.props.newsObj.articles.map((news, i) => {
         return <div className="wrapper" key={i*10}>
                  <div className="header">
-                   <h3>{news.author}</h3>
+                   <h3>News</h3>
                    <p>|</p>
                    <h2>{news.title}</h2>
                  </div>
                </div>
       })
     }
-
 
     return(
       <div className="news">

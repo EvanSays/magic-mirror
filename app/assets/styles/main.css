@@ -98,10 +98,12 @@ body {
 .news {
   grid-column:  2 / span 3;
   grid-row: 4;
+  align-content: end;
   align-self: start;
   text-align: left;
   animation-name: news;
   animation-duration: 5s;
+  max-height: 250px;
 }
 
 .news .wrapper {
@@ -112,20 +114,44 @@ body {
 }
 .news .wrapper .header{
   display: flex;
-
+  align-items: center;
+  align-content: end;
 }
 
 .news .wrapper .header h3,
 .news .wrapper .header h2 {
   font-weight: 200;
   margin: 0;
-  font-size: 18px;
+  font-size: 15px;
   text-align: left;
 }
 
 .news .wrapper .header p {
   margin: 0 5px 0 5px;
+  font-size: 23px;
 }
+
+/*=======================================
+>>>>>>>>  Gify  <<<<<<<<
+========================================*/
+
+.gif {
+  grid-column: 5;
+  grid-row: 4 ;
+  align-content: end;
+  align-self: start;
+  text-align: left;
+  animation-name: gif;
+  animation-duration: 5s;
+}
+.gif img {
+  width: 100%;
+  max-height: 200px;
+}
+
+/*=======================================
+>>>>>>>>  Key Frames  <<<<<<<<
+========================================*/
 
 @keyframes weather {
   from {
@@ -140,6 +166,16 @@ body {
 @keyframes date {
   from {
     transform : translateX(450px);
+  }
+
+  to {
+    transform : translateX(0px);
+  }
+}
+
+@keyframes gif {
+  from {
+    transform : translateX(550px);
   }
 
   to {

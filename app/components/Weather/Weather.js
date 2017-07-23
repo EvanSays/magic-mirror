@@ -7,7 +7,7 @@ class Weather extends Component {
   }
 
   componentDidMount() {
-    this.props.getWeatherData();
+      this.props.getWeatherData();
   }
 
   render(){

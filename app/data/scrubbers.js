@@ -30,7 +30,7 @@ export class DarkSkyData{
 
 export class GifyData {
   constructor(obj) {
-    this.url = obj.data.map(gif => gif.images.original.url)
+    this.url = obj.data.image_url
   }
 }
 
