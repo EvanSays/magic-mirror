@@ -3,10 +3,10 @@ import moment from 'moment'
 export class WeatherData{
   constructor(obj) {
     this.city = obj.current_observation.display_location.city,
-    this.icon = `../../assets/icons/${weatherIconKeys[obj.current_observation.icon]}.svg`,
+    this.icon = weatherIconKeys[obj.current_observation.icon],
     this.temp = obj.hourly_forecast[0].temp.english,
     this.hourly = obj.hourly_forecast.slice(0,3).map(hour => {
-      return [`../../assets/icons/${weatherIconKeys[hour.icon]}.svg`, hour.FCTTIME.civil]
+      return [hour.FCTTIME.civil.slice(0, -3), weatherIconKeys[hour.icon], hour.temp.english]
     })
   }
 }
@@ -48,24 +48,24 @@ export const darkSkyIconKeys = {
 }
 
 export const weatherIconKeys = {
-  chanceofflurries: 'flurries-snow3',
-  chancerain: 'chancerain3',
-  chanceofsleet: 'chancesleet3',
-  chanceofsnow: 'flurries-snow3',
-  chancetstorms: 'tstorm3',
-  tstorms: 'tstorm3',
-  clear: 'sunny_icon',
-  cloudy: 'cloudy3',
-  flurries: 'flurries-snow3',
-  hazy: 'fog-hazy',
-  fog: 'fog-hazy',
-  mostlycloudy: 'mostlycloudy3',
-  mostlysunny: 'sunny_icon',
-  partlycloudy: 'mostlysunny-partlycloudy',
-  partlysunny: 'mostlysunny-partlycloudy',
-  rain: 'rain_icon',
-  sleet: 'sleet3',
-  snow: 'flurries-snow3',
-  sunny: 'sunny_icon',
-  thunderstorm: 'tstorm3',
+  chanceofflurries: 'SNOW',
+  chancerain: 'RAIN',
+  chanceofsleet: 'SNOW',
+  chanceofsnow: 'SNOW',
+  chancetstorms: 'RAIN',
+  tstorms: 'RAIN',
+  clear: 'CLEAR_DAY',
+  cloudy: 'CLOUDY',
+  flurries: 'SLEET',
+  hazy: 'FOG',
+  fog: 'FOG',
+  mostlycloudy: 'CLOUDY',
+  mostlysunny: 'PARTLY_CLOUDY_DAY',
+  partlycloudy: 'CLOUDY',
+  partlysunny: 'PARTLY_CLOUDY_DAY',
+  rain: 'RAIN',
+  sleet: 'SLEET',
+  snow: 'SNOW',
+  sunny: 'CLEAR_DAY',
+  thunderstorm: 'RAIN',
 };

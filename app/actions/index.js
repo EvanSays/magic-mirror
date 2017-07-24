@@ -12,13 +12,20 @@ export const fetchWeatherData = () => {
         return res
       })
     .then(res => res.json())
-    .then(data => dispatch(setWeatherData(new WeatherData(data))))
+    .then(data => {
+      console.log(data);
+      dispatch(setWeatherData(new WeatherData(data)))
+    })
   }
 }
 
 export const fetchDarkSkyData = () => {
   return(dispatch) => {
-    fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkSkyKey}/39.750784,-104.996579`)
+    fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkSkyKey}/39.750784,-104.996579`, {
+    method: 'GET',
+    mode: 'no-cors',
+    headers: new Headers(),
+    })
       .then(res => {
         if(!res.ok) {
           throw Error(res.statusText)

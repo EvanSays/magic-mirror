@@ -69,17 +69,17 @@
 	
 	var _reactRedux = __webpack_require__(187);
 	
-	var _createBrowserHistory = __webpack_require__(356);
+	var _createBrowserHistory = __webpack_require__(358);
 	
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 	
-	var _reactRouterRedux = __webpack_require__(364);
+	var _reactRouterRedux = __webpack_require__(366);
 	
-	var _reduxThunk = __webpack_require__(382);
+	var _reduxThunk = __webpack_require__(384);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _rootReducer = __webpack_require__(383);
+	var _rootReducer = __webpack_require__(385);
 	
 	var _rootReducer2 = _interopRequireDefault(_rootReducer);
 	
@@ -22254,11 +22254,11 @@
 	
 	var _NewsContainer2 = _interopRequireDefault(_NewsContainer);
 	
-	var _DateTodayContainer = __webpack_require__(352);
+	var _DateTodayContainer = __webpack_require__(354);
 	
 	var _DateTodayContainer2 = _interopRequireDefault(_DateTodayContainer);
 	
-	var _GifsContainer = __webpack_require__(354);
+	var _GifsContainer = __webpack_require__(356);
 	
 	var _GifsContainer2 = _interopRequireDefault(_GifsContainer);
 	
@@ -22319,7 +22319,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(state) {
-	
 	  return {
 	    weatherObj: state.setWeatherData
 	  };
@@ -22328,7 +22327,7 @@
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
 	    getWeatherData: function getWeatherData() {
-	      dispatch((0, _actions.fetchDarkSkyData)());
+	      dispatch((0, _actions.fetchWeatherData)());
 	    }
 	  };
 	};
@@ -24722,6 +24721,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _propTypes = __webpack_require__(189);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
 	var _reactSkycons = __webpack_require__(228);
 	
 	var _reactSkycons2 = _interopRequireDefault(_reactSkycons);
@@ -24751,9 +24754,12 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var weatherObj = this.props.weatherObj;
+	
+	
 	      var hourly = [];
-	      if (this.props.weatherObj.hourly) {
-	        hourly = this.props.weatherObj.hourly.map(function (hour, i) {
+	      if (weatherObj.hourly) {
+	        hourly = weatherObj.hourly.map(function (hour, i) {
 	          return _react2.default.createElement(
 	            'div',
 	            { className: 'hourly', key: i * 10 },
@@ -24786,18 +24792,18 @@
 	          _react2.default.createElement(
 	            'h2',
 	            null,
-	            this.props.weatherObj.temp,
+	            weatherObj.temp,
 	            '\xB0'
 	          ),
 	          _react2.default.createElement(_reactSkycons2.default, { className: 'icon',
 	            color: 'white',
-	            icon: this.props.weatherObj.icon,
+	            icon: weatherObj.icon,
 	            autoplay: true })
 	        ),
 	        _react2.default.createElement(
 	          'p',
 	          null,
-	          this.props.weatherObj.city
+	          weatherObj.city
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -24810,6 +24816,10 @@
 	
 	  return Weather;
 	}(_react.Component);
+	
+	Weather.propTypes = {
+	  weatherObj: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object])
+	};
 	
 	exports.default = Weather;
 
@@ -25696,7 +25706,11 @@
 	
 	var fetchDarkSkyData = exports.fetchDarkSkyData = function fetchDarkSkyData() {
 	  return function (dispatch) {
-	    fetch('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + _apiKeys.darkSkyKey + '/39.750784,-104.996579').then(function (res) {
+	    fetch('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + _apiKeys.darkSkyKey + '/39.750784,-104.996579', {
+	      method: 'GET',
+	      mode: 'no-cors',
+	      headers: new Headers()
+	    }).then(function (res) {
 	      if (!res.ok) {
 	        throw Error(res.statusText);
 	      }
@@ -25704,7 +25718,7 @@
 	    }).then(function (res) {
 	      return res.json();
 	    }).then(function (data) {
-	      return dispatch(setWeatherData(new _scrubbers.DarkSkyData(data)));
+	      dispatch(setWeatherData(new _scrubbers.DarkSkyData(data)));
 	    });
 	  };
 	};
@@ -25726,7 +25740,7 @@
 	
 	var fetchGifyData = exports.fetchGifyData = function fetchGifyData() {
 	  return function (dispatch) {
-	    fetch('http://api.giphy.com/v1/stickers/random?api_key=' + _apiKeys.gifyKey).then(function (res) {
+	    fetch('http://api.giphy.com/v1/gifs/random?api_key=' + _apiKeys.gifyKey).then(function (res) {
 	      if (!res.ok) {
 	        throw Error(res.statusText);
 	      }
@@ -25734,14 +25748,12 @@
 	    }).then(function (res) {
 	      return res.json();
 	    }).then(function (data) {
-	      console.log(data.data);
 	      dispatch(setGifyData(new _scrubbers.GifyData(data)));
 	    });
 	  };
 	};
 	
 	var setGifyData = exports.setGifyData = function setGifyData(dataObj) {
-	  console.log(dataObj);
 	  return {
 	    type: 'GIFY_DATA',
 	    gifyData: dataObj
@@ -25752,7 +25764,6 @@
 	  return function (dispatch) {
 	    var day = (0, _moment2.default)().format('dddd');
 	    var time = (0, _moment2.default)().format('h:mm:ss a');
-	
 	    dispatch(setDateTodayData([day, time]));
 	  };
 	};
@@ -25772,6 +25783,7 @@
 	};
 	
 	var setWeatherData = exports.setWeatherData = function setWeatherData(dataObj) {
+	
 	  return {
 	    type: 'WEATHER_DATA',
 	    weatherData: dataObj
@@ -25807,8 +25819,8 @@
 	var WeatherData = exports.WeatherData = function WeatherData(obj) {
 	  _classCallCheck(this, WeatherData);
 	
-	  this.city = obj.current_observation.display_location.city, this.icon = '../../assets/icons/' + weatherIconKeys[obj.current_observation.icon] + '.svg', this.temp = obj.hourly_forecast[0].temp.english, this.hourly = obj.hourly_forecast.slice(0, 3).map(function (hour) {
-	    return ['../../assets/icons/' + weatherIconKeys[hour.icon] + '.svg', hour.FCTTIME.civil];
+	  this.city = obj.current_observation.display_location.city, this.icon = darkSkyIconKeys[obj.current_observation.icon], this.temp = obj.hourly_forecast[0].temp.english, this.hourly = obj.hourly_forecast.slice(0, 3).map(function (hour) {
+	    return [darkSkyIconKeys[hour.icon], hour.FCTTIME.civil];
 	  });
 	};
 	
@@ -25821,7 +25833,7 @@
 	var DarkSkyData = exports.DarkSkyData = function DarkSkyData(obj) {
 	  _classCallCheck(this, DarkSkyData);
 	
-	  this.city = obj.timezone, this.icon = darkSkyIconKeys[obj.currently.icon], this.temp = Math.ceil(obj.currently.temperature), this.hourly = obj.hourly.data.slice(1, 4).map(function (hour) {
+	  this.city = obj.timezone.slice(obj.timezone.indexOf('/') + 1), this.icon = darkSkyIconKeys[obj.currently.icon], this.temp = Math.ceil(obj.currently.temperature), this.hourly = obj.hourly.data.slice(1, 4).map(function (hour) {
 	    return [_moment2.default.unix(hour.time).format("h"), darkSkyIconKeys[hour.icon], Math.ceil(hour.apparentTemperature)];
 	  });
 	};
@@ -25846,26 +25858,26 @@
 	};
 	
 	var weatherIconKeys = exports.weatherIconKeys = {
-	  chanceofflurries: 'flurries-snow3',
-	  chancerain: 'chancerain3',
-	  chanceofsleet: 'chancesleet3',
-	  chanceofsnow: 'flurries-snow3',
-	  chancetstorms: 'tstorm3',
-	  tstorms: 'tstorm3',
-	  clear: 'sunny_icon',
-	  cloudy: 'cloudy3',
-	  flurries: 'flurries-snow3',
-	  hazy: 'fog-hazy',
-	  fog: 'fog-hazy',
-	  mostlycloudy: 'mostlycloudy3',
-	  mostlysunny: 'sunny_icon',
-	  partlycloudy: 'mostlysunny-partlycloudy',
-	  partlysunny: 'mostlysunny-partlycloudy',
-	  rain: 'rain_icon',
-	  sleet: 'sleet3',
-	  snow: 'flurries-snow3',
-	  sunny: 'sunny_icon',
-	  thunderstorm: 'tstorm3'
+	  chanceofflurries: 'SNOW',
+	  chancerain: 'RAIN',
+	  chanceofsleet: 'SNOW',
+	  chanceofsnow: 'SNOW',
+	  chancetstorms: 'RAIN',
+	  tstorms: 'RAIN',
+	  clear: 'CLEAR_DAY',
+	  cloudy: 'CLOUDY',
+	  flurries: 'SLEET',
+	  hazy: 'FOG',
+	  fog: 'FOG',
+	  mostlycloudy: 'CLOUDY',
+	  mostlysunny: 'PARTLY_CLOUDY_DAY',
+	  partlycloudy: 'CLOUDY',
+	  partlysunny: 'PARTLY_CLOUDY_DAY',
+	  rain: 'RAIN',
+	  sleet: 'SLEET',
+	  snow: 'SNOW',
+	  sunny: 'CLEAR_DAY',
+	  thunderstorm: 'RAIN'
 	};
 
 /***/ }),
@@ -41722,7 +41734,7 @@
 /* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -41733,6 +41745,14 @@
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _NewsCardContainer = __webpack_require__(352);
+	
+	var _NewsCardContainer2 = _interopRequireDefault(_NewsCardContainer);
+	
+	var _propTypes = __webpack_require__(189);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -41752,53 +41772,26 @@
 	  }
 	
 	  _createClass(News, [{
-	    key: "componentDidMount",
+	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.props.getNewsData();
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
-	      var article = [];
+	      var newsObj = this.props.newsObj;
 	
-	      if (this.props.newsObj.articles) {
-	        article = this.props.newsObj.articles.map(function (news, i) {
-	          return _react2.default.createElement(
-	            "div",
-	            { className: "wrapper", key: i * 10 },
-	            _react2.default.createElement(
-	              "div",
-	              { className: "header" },
-	              _react2.default.createElement(
-	                "h3",
-	                null,
-	                news.author
-	              ),
-	              _react2.default.createElement(
-	                "p",
-	                null,
-	                "|"
-	              ),
-	              _react2.default.createElement(
-	                "h2",
-	                null,
-	                news.title
-	              )
-	            )
-	          );
-	        });
-	      }
 	
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "news" },
-	        article
-	      );
+	      return _react2.default.createElement(_NewsCardContainer2.default, { newsObj: newsObj });
 	    }
 	  }]);
 	
 	  return News;
 	}(_react.Component);
+	
+	News.propTypes = {
+	  newsObj: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object])
+	};
 	
 	exports.default = News;
 
@@ -41814,7 +41807,100 @@
 	
 	var _reactRedux = __webpack_require__(187);
 	
-	var _DateToday = __webpack_require__(353);
+	var _NewsCard = __webpack_require__(353);
+	
+	var _NewsCard2 = _interopRequireDefault(_NewsCard);
+	
+	var _actions = __webpack_require__(230);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// const mapStateToProps = (state) => {
+	//   return {
+	//     newsObj: state.setNewsData
+	//   }
+	// }
+	
+	// const mapDispatchToProps = (dispatch) => {
+	//   return {
+	//     getNewsData: () => {
+	//       dispatch(fetchNewsData())
+	//     }
+	//   }
+	// }
+	
+	exports.default = (0, _reactRedux.connect)(null, null)(_NewsCard2.default);
+
+/***/ }),
+/* 353 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NewsCard = function NewsCard(_ref) {
+	  var newsObj = _ref.newsObj;
+	
+	
+	  var article = [];
+	  if (newsObj.articles) {
+	    article = newsObj.articles.map(function (news, i) {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "wrapper", key: i * 10 },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "header" },
+	          _react2.default.createElement(
+	            "h3",
+	            null,
+	            "News"
+	          ),
+	          _react2.default.createElement(
+	            "p",
+	            null,
+	            "|"
+	          ),
+	          _react2.default.createElement(
+	            "h2",
+	            null,
+	            news.title
+	          )
+	        )
+	      );
+	    });
+	  }
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "news" },
+	    article
+	  );
+	};
+	
+	exports.default = NewsCard;
+
+/***/ }),
+/* 354 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(187);
+	
+	var _DateToday = __webpack_require__(355);
 	
 	var _DateToday2 = _interopRequireDefault(_DateToday);
 	
@@ -41839,7 +41925,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_DateToday2.default);
 
 /***/ }),
-/* 353 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41910,7 +41996,7 @@
 	exports.default = DateToday;
 
 /***/ }),
-/* 354 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41921,7 +42007,7 @@
 	
 	var _reactRedux = __webpack_require__(187);
 	
-	var _Gifs = __webpack_require__(355);
+	var _Gifs = __webpack_require__(357);
 	
 	var _Gifs2 = _interopRequireDefault(_Gifs);
 	
@@ -41946,10 +42032,10 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Gifs2.default);
 
 /***/ }),
-/* 355 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -41960,6 +42046,10 @@
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _propTypes = __webpack_require__(189);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -41979,23 +42069,25 @@
 	  }
 	
 	  _createClass(Gifs, [{
-	    key: "componentDidMount",
+	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.props.getGifyData();
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
+	      var gifyObj = this.props.gifyObj;
+	
+	
 	      var gifUrl = [];
-	      if (this.props.gifyObj) {
-	        gifUrl = this.props.gifyObj.url;
-	        return _react2.default.createElement("img", { src: gifUrl, alt: "random gif" });
+	      if (gifyObj) {
+	        gifUrl = gifyObj.url;
 	      }
 	
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "gify" },
-	        gifUrl
+	        'div',
+	        { className: 'gif' },
+	        _react2.default.createElement('img', { src: gifUrl, alt: 'random gif' })
 	      );
 	    }
 	  }]);
@@ -42003,10 +42095,14 @@
 	  return Gifs;
 	}(_react.Component);
 	
+	Gifs.propTypes = {
+	  gifyObj: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object])
+	};
+	
 	exports.default = Gifs;
 
 /***/ }),
-/* 356 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42017,7 +42113,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _warning = __webpack_require__(357);
+	var _warning = __webpack_require__(359);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -42025,15 +42121,15 @@
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _LocationUtils = __webpack_require__(358);
+	var _LocationUtils = __webpack_require__(360);
 	
-	var _PathUtils = __webpack_require__(361);
+	var _PathUtils = __webpack_require__(363);
 	
-	var _createTransitionManager = __webpack_require__(362);
+	var _createTransitionManager = __webpack_require__(364);
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
-	var _DOMUtils = __webpack_require__(363);
+	var _DOMUtils = __webpack_require__(365);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -42318,7 +42414,7 @@
 	exports.default = createBrowserHistory;
 
 /***/ }),
-/* 357 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -42385,7 +42481,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 358 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42395,15 +42491,15 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _resolvePathname = __webpack_require__(359);
+	var _resolvePathname = __webpack_require__(361);
 	
 	var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 	
-	var _valueEqual = __webpack_require__(360);
+	var _valueEqual = __webpack_require__(362);
 	
 	var _valueEqual2 = _interopRequireDefault(_valueEqual);
 	
-	var _PathUtils = __webpack_require__(361);
+	var _PathUtils = __webpack_require__(363);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -42468,7 +42564,7 @@
 	};
 
 /***/ }),
-/* 359 */
+/* 361 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -42543,7 +42639,7 @@
 	module.exports = resolvePathname;
 
 /***/ }),
-/* 360 */
+/* 362 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -42588,7 +42684,7 @@
 	exports.default = valueEqual;
 
 /***/ }),
-/* 361 */
+/* 363 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -42654,14 +42750,14 @@
 	};
 
 /***/ }),
-/* 362 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _warning = __webpack_require__(357);
+	var _warning = __webpack_require__(359);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -42744,7 +42840,7 @@
 	exports.default = createTransitionManager;
 
 /***/ }),
-/* 363 */
+/* 365 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -42804,7 +42900,7 @@
 	};
 
 /***/ }),
-/* 364 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42812,7 +42908,7 @@
 	exports.__esModule = true;
 	exports.routerMiddleware = exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.routerReducer = exports.LOCATION_CHANGE = exports.ConnectedRouter = undefined;
 	
-	var _reducer = __webpack_require__(365);
+	var _reducer = __webpack_require__(367);
 	
 	Object.defineProperty(exports, 'LOCATION_CHANGE', {
 	  enumerable: true,
@@ -42827,7 +42923,7 @@
 	  }
 	});
 	
-	var _actions = __webpack_require__(366);
+	var _actions = __webpack_require__(368);
 	
 	Object.defineProperty(exports, 'CALL_HISTORY_METHOD', {
 	  enumerable: true,
@@ -42872,11 +42968,11 @@
 	  }
 	});
 	
-	var _ConnectedRouter2 = __webpack_require__(367);
+	var _ConnectedRouter2 = __webpack_require__(369);
 	
 	var _ConnectedRouter3 = _interopRequireDefault(_ConnectedRouter2);
 	
-	var _middleware = __webpack_require__(381);
+	var _middleware = __webpack_require__(383);
 	
 	var _middleware2 = _interopRequireDefault(_middleware);
 	
@@ -42886,7 +42982,7 @@
 	exports.routerMiddleware = _middleware2.default;
 
 /***/ }),
-/* 365 */
+/* 367 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -42927,7 +43023,7 @@
 	}
 
 /***/ }),
-/* 366 */
+/* 368 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -42968,7 +43064,7 @@
 	var routerActions = exports.routerActions = { push: push, replace: replace, go: go, goBack: goBack, goForward: goForward };
 
 /***/ }),
-/* 367 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42983,9 +43079,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _reactRouter = __webpack_require__(368);
+	var _reactRouter = __webpack_require__(370);
 	
-	var _reducer = __webpack_require__(365);
+	var _reducer = __webpack_require__(367);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -43048,7 +43144,7 @@
 	exports.default = ConnectedRouter;
 
 /***/ }),
-/* 368 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43056,39 +43152,39 @@
 	exports.__esModule = true;
 	exports.withRouter = exports.matchPath = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.Redirect = exports.Prompt = exports.MemoryRouter = undefined;
 	
-	var _MemoryRouter2 = __webpack_require__(369);
+	var _MemoryRouter2 = __webpack_require__(371);
 	
 	var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
 	
-	var _Prompt2 = __webpack_require__(372);
+	var _Prompt2 = __webpack_require__(374);
 	
 	var _Prompt3 = _interopRequireDefault(_Prompt2);
 	
-	var _Redirect2 = __webpack_require__(373);
+	var _Redirect2 = __webpack_require__(375);
 	
 	var _Redirect3 = _interopRequireDefault(_Redirect2);
 	
-	var _Route2 = __webpack_require__(374);
+	var _Route2 = __webpack_require__(376);
 	
 	var _Route3 = _interopRequireDefault(_Route2);
 	
-	var _Router2 = __webpack_require__(371);
+	var _Router2 = __webpack_require__(373);
 	
 	var _Router3 = _interopRequireDefault(_Router2);
 	
-	var _StaticRouter2 = __webpack_require__(378);
+	var _StaticRouter2 = __webpack_require__(380);
 	
 	var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
 	
-	var _Switch2 = __webpack_require__(379);
+	var _Switch2 = __webpack_require__(381);
 	
 	var _Switch3 = _interopRequireDefault(_Switch2);
 	
-	var _matchPath2 = __webpack_require__(375);
+	var _matchPath2 = __webpack_require__(377);
 	
 	var _matchPath3 = _interopRequireDefault(_matchPath2);
 	
-	var _withRouter2 = __webpack_require__(380);
+	var _withRouter2 = __webpack_require__(382);
 	
 	var _withRouter3 = _interopRequireDefault(_withRouter2);
 	
@@ -43105,7 +43201,7 @@
 	exports.withRouter = _withRouter3.default;
 
 /***/ }),
-/* 369 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43120,11 +43216,11 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _createMemoryHistory = __webpack_require__(370);
+	var _createMemoryHistory = __webpack_require__(372);
 	
 	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 	
-	var _Router = __webpack_require__(371);
+	var _Router = __webpack_require__(373);
 	
 	var _Router2 = _interopRequireDefault(_Router);
 	
@@ -43171,7 +43267,7 @@
 	exports.default = MemoryRouter;
 
 /***/ }),
-/* 370 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43182,15 +43278,15 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _warning = __webpack_require__(357);
+	var _warning = __webpack_require__(359);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _PathUtils = __webpack_require__(361);
+	var _PathUtils = __webpack_require__(363);
 	
-	var _LocationUtils = __webpack_require__(358);
+	var _LocationUtils = __webpack_require__(360);
 	
-	var _createTransitionManager = __webpack_require__(362);
+	var _createTransitionManager = __webpack_require__(364);
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
@@ -43346,7 +43442,7 @@
 	exports.default = createMemoryHistory;
 
 /***/ }),
-/* 371 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43355,7 +43451,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _warning = __webpack_require__(357);
+	var _warning = __webpack_require__(359);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -43470,7 +43566,7 @@
 	exports.default = Router;
 
 /***/ }),
-/* 372 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43559,7 +43655,7 @@
 	exports.default = Prompt;
 
 /***/ }),
-/* 373 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43648,7 +43744,7 @@
 	exports.default = Redirect;
 
 /***/ }),
-/* 374 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43657,7 +43753,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _warning = __webpack_require__(357);
+	var _warning = __webpack_require__(359);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -43669,7 +43765,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _matchPath = __webpack_require__(375);
+	var _matchPath = __webpack_require__(377);
 	
 	var _matchPath2 = _interopRequireDefault(_matchPath);
 	
@@ -43798,14 +43894,14 @@
 	exports.default = Route;
 
 /***/ }),
-/* 375 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _pathToRegexp = __webpack_require__(376);
+	var _pathToRegexp = __webpack_require__(378);
 	
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 	
@@ -43878,10 +43974,10 @@
 	exports.default = matchPath;
 
 /***/ }),
-/* 376 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isarray = __webpack_require__(377)
+	var isarray = __webpack_require__(379)
 	
 	/**
 	 * Expose `pathToRegexp`.
@@ -44310,7 +44406,7 @@
 
 
 /***/ }),
-/* 377 */
+/* 379 */
 /***/ (function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -44319,7 +44415,7 @@
 
 
 /***/ }),
-/* 378 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44340,9 +44436,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _PathUtils = __webpack_require__(361);
+	var _PathUtils = __webpack_require__(363);
 	
-	var _Router = __webpack_require__(371);
+	var _Router = __webpack_require__(373);
 	
 	var _Router2 = _interopRequireDefault(_Router);
 	
@@ -44501,7 +44597,7 @@
 	exports.default = StaticRouter;
 
 /***/ }),
-/* 379 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44516,11 +44612,11 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _warning = __webpack_require__(357);
+	var _warning = __webpack_require__(359);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _matchPath = __webpack_require__(375);
+	var _matchPath = __webpack_require__(377);
 	
 	var _matchPath2 = _interopRequireDefault(_matchPath);
 	
@@ -44593,7 +44689,7 @@
 	exports.default = Switch;
 
 /***/ }),
-/* 380 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44614,7 +44710,7 @@
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _Route = __webpack_require__(374);
+	var _Route = __webpack_require__(376);
 	
 	var _Route2 = _interopRequireDefault(_Route);
 	
@@ -44647,7 +44743,7 @@
 	exports.default = withRouter;
 
 /***/ }),
-/* 381 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44655,7 +44751,7 @@
 	exports.__esModule = true;
 	exports.default = routerMiddleware;
 	
-	var _actions = __webpack_require__(366);
+	var _actions = __webpack_require__(368);
 	
 	/**
 	 * This middleware captures CALL_HISTORY_METHOD actions to redirect to the
@@ -44681,7 +44777,7 @@
 	}
 
 /***/ }),
-/* 382 */
+/* 384 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -44709,7 +44805,7 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 383 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44720,13 +44816,13 @@
 	
 	var _redux = __webpack_require__(200);
 	
-	var _weatherReducer = __webpack_require__(384);
+	var _weatherReducer = __webpack_require__(386);
 	
-	var _newsReducer = __webpack_require__(385);
+	var _newsReducer = __webpack_require__(387);
 	
-	var _dateTodayReducer = __webpack_require__(386);
+	var _dateTodayReducer = __webpack_require__(388);
 	
-	var _gifyReducer = __webpack_require__(387);
+	var _gifyReducer = __webpack_require__(389);
 	
 	exports.default = (0, _redux.combineReducers)({
 	  setWeatherData: _weatherReducer.setWeatherData,
@@ -44736,7 +44832,7 @@
 	});
 
 /***/ }),
-/* 384 */
+/* 386 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -44757,7 +44853,7 @@
 	};
 
 /***/ }),
-/* 385 */
+/* 387 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -44778,7 +44874,7 @@
 	};
 
 /***/ }),
-/* 386 */
+/* 388 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -44799,7 +44895,7 @@
 	};
 
 /***/ }),
-/* 387 */
+/* 389 */
 /***/ (function(module, exports) {
 
 	'use strict';
