@@ -24756,7 +24756,7 @@
 	    value: function render() {
 	      var weatherObj = this.props.weatherObj;
 	
-	
+	      console.log(weatherObj);
 	      var hourly = [];
 	      if (weatherObj.hourly) {
 	        hourly = weatherObj.hourly.map(function (hour, i) {
@@ -25699,7 +25699,8 @@
 	    }).then(function (res) {
 	      return res.json();
 	    }).then(function (data) {
-	      return dispatch(setWeatherData(new _scrubbers.WeatherData(data)));
+	      console.log(data);
+	      dispatch(setWeatherData(new _scrubbers.WeatherData(data)));
 	    });
 	  };
 	};
@@ -25819,8 +25820,8 @@
 	var WeatherData = exports.WeatherData = function WeatherData(obj) {
 	  _classCallCheck(this, WeatherData);
 	
-	  this.city = obj.current_observation.display_location.city, this.icon = darkSkyIconKeys[obj.current_observation.icon], this.temp = obj.hourly_forecast[0].temp.english, this.hourly = obj.hourly_forecast.slice(0, 3).map(function (hour) {
-	    return [darkSkyIconKeys[hour.icon], hour.FCTTIME.civil];
+	  this.city = obj.current_observation.display_location.city, this.icon = weatherIconKeys[obj.current_observation.icon], this.temp = obj.hourly_forecast[0].temp.english, this.hourly = obj.hourly_forecast.slice(0, 3).map(function (hour) {
+	    return [hour.FCTTIME.civil.slice(0, -3), weatherIconKeys[hour.icon], hour.temp.english];
 	  });
 	};
 	
