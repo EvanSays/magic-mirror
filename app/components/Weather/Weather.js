@@ -13,7 +13,7 @@ class Weather extends Component {
 
   render(){
     const { weatherObj } = this.props;
-    
+    console.log(weatherObj);
     let hourly = []
     if(weatherObj.hourly) {
       hourly = weatherObj.hourly.map((hour, i) => {

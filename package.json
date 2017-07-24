@@ -2,11 +2,12 @@
   "name": "example-api",
   "version": "1.0.0",
   "description": "MeatMeet",
-  "main": "src/main.js",
+  "main": "main.js",
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
     "start": "npm build && nodemon src/app.js",
+    "electron": "electron .",
     "test": "jest",
     "test:watch": "npm test --watch"
   },
@@ -15,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "electron": "^1.6.11",
     "express": "^4.14.0",
     "express-cors": "0.0.3",
     "history": "^4.6.3",
@@ -38,8 +40,6 @@
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
-    "electron": "^1.6.11",
-    "electron-builder": "^19.16.0",
     "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
