@@ -7,13 +7,19 @@ class News extends Component {
     super()
   }
 
-  componentDidMount(){
+  componentDidMount() {
+    setInterval(() => {
+      this.props.getNewsData();
+    }, 1000 * 60 * 30)
+  }
+  
+  componentWillMount(){
     this.props.getNewsData();
   }
 
   render(){
     const { newsObj } = this.props;
-    
+
     return(
       <NewsCardContainer newsObj={newsObj}/>
     )

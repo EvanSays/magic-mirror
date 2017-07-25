@@ -6,9 +6,16 @@ class Gifs extends Component {
     super()
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.getGifyData();
   }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.props.getGifyData()
+    },10000)
+  }
+
 
   render(){
     const { gifyObj } = this.props;
