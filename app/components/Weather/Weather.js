@@ -8,12 +8,17 @@ class Weather extends Component {
   }
 
   componentDidMount() {
+    setInterval(() => {
       this.props.getWeatherData();
+    }, 1000 * 60 * 30)
   }
+  componentWillMount(){
+    this.props.getWeatherData();
+  }
+
 
   render(){
     const { weatherObj } = this.props;
-    console.log(weatherObj);
     let hourly = []
     if(weatherObj.hourly) {
       hourly = weatherObj.hourly.map((hour, i) => {

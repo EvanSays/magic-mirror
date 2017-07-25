@@ -24756,7 +24756,6 @@
 	    value: function render() {
 	      var weatherObj = this.props.weatherObj;
 	
-	      console.log(weatherObj);
 	      var hourly = [];
 	      if (weatherObj.hourly) {
 	        hourly = weatherObj.hourly.map(function (hour, i) {
@@ -25699,7 +25698,6 @@
 	    }).then(function (res) {
 	      return res.json();
 	    }).then(function (data) {
-	      console.log(data);
 	      dispatch(setWeatherData(new _scrubbers.WeatherData(data)));
 	    });
 	  };
@@ -42072,6 +42070,16 @@
 	  _createClass(Gifs, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      setInterval(function () {
+	        console.log('interval');
+	        _this2.props.getGifyData();
+	      }, 3000);
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
 	      this.props.getGifyData();
 	    }
 	  }, {

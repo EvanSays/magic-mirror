@@ -13,7 +13,6 @@ export const fetchWeatherData = () => {
       })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       dispatch(setWeatherData(new WeatherData(data)))
     })
   }
