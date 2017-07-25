@@ -38,6 +38,8 @@ body {
   grid-row: 2;
   animation-name: weather;
   animation-duration: 5s;
+  justify-self: start;
+  align-self: start;
 }
 
 .weather .current {
@@ -87,6 +89,7 @@ body {
   animation-name: date;
   animation-duration: 5s;
   justify-self: end;
+  align-self: start;
 }
 .date h1 {
   font-size: 50px;
@@ -111,6 +114,7 @@ body {
   animation-duration: 5s;
   max-height: 250px;
   align-self: end;
+  justify-self: start;
 }
 
 .news .wrapper {
@@ -152,6 +156,8 @@ body {
   text-align: left;
   animation-name: gif;
   animation-duration: 5s;
+  align-self: end;
+  justify-self: end;
   align-self: end;
 }
 .gif img {
