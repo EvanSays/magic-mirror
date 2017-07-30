@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, webContents} = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -6,12 +6,18 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
+
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({webPreferences: { experimentalFeatures: true, webSecurity: false }, frame: false, titleBarStyle: 'hidden'})
-  win.maximize()
-  win.setFullScreen(true)
-  win.show()
+
+  win = new BrowserWindow({webPreferences: { experimentalFeatures: true, webSecurity: false } })
+//   win = new BrowserWindow({webPreferences: { experimentalFeatures: true, webSecurity: false }, frame: false, titleBarStyle: 'hidden'})
+
+  win.webContents.on('did-finish-load', (event) => {
+    // win.maximize()
+    // win.setFullScreen(true)
+    win.show()
+  })
 
   // and load the index.html of the app.
   win.loadURL(url.format({
@@ -22,7 +28,7 @@ function createWindow () {
 
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {

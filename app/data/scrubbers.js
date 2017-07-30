@@ -34,6 +34,16 @@ export class GifyData {
   }
 }
 
+export class AuthData {
+  constructor(obj) {
+    this.title = obj.payload.pull_request.title,
+    this.avatar = obj.payload.pull_request.user.avatar_url,
+    this.created = obj.payload.pull_request.created_at,
+    this.action = obj.payload.action,
+    this.number = obj.payload.number
+  }
+}
+
 export const darkSkyIconKeys = {
   'clear-day': 'CLEAR_DAY',
   'clear-night': 'CLEAR_NIGHT',

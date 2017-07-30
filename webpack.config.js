@@ -12,6 +12,8 @@ module.exports = {
      filename: 'bundle.js',
      publicPath: '/'
    },
+   target: 'electron',
+
    module: {
      loaders: [{
        test: /.jsx?$/,
