@@ -1,8 +1,11 @@
-import { WeatherData, NewsData, DarkSkyData, GifyData } from '../data/scrubbers'
+import { WeatherData, NewsData, DarkSkyData, GifyData, AuthData } from '../data/scrubbers'
 import { wundergroundKey, newsApiKey, darkSkyKey, gifyKey } from '../data/apiKeys'
 import moment from 'moment'
+// import * as firebase from "firebase";
+
 
 export const fetchWeatherData = () => {
+
   return(dispatch) => {
     fetch(`http://api.wunderground.com/api/${wundergroundKey}/forecast/conditions/hourly/q/CO/Denver.json`)
       .then(res => {
@@ -67,6 +70,27 @@ export const fetchGifyData = () => {
     .then(data => {
       dispatch(setGifyData(new GifyData(data)))
     })
+  }
+}
+
+export const fetchAuthData = () => {
+  return(dispatch) => {
+    const token = window.localStorage.githubAccessToken
+      fetch(`https://api.github.com/user?access_token=${token}`)
+      .then(res => res.json())
+      .then(data => fetch(data.received_events_url))
+      .then(events => events.json())
+      .then(results => {
+         const request = results.filter(result => result.type === 'PullRequestEvent' ).map(event => new AuthData(event))
+         dispatch(setAuthData(request));
+      })
+  }
+}
+
+export const setAuthData = (dataObj) => {
+  return {
+    type: 'AUTH_DATA',
+    authData: dataObj
   }
 }
 

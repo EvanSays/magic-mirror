@@ -2,11 +2,11 @@ import { connect } from 'react-redux'
 import NewsCard from '../components/NewsCard/NewsCard'
 import { fetchNewsData } from '../actions'
 
-// const mapStateToProps = (state) => {
-//   return {
-//     newsObj: state.setNewsData
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    state
+  }
+}
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
@@ -16,4 +16,4 @@ import { fetchNewsData } from '../actions'
 //   }
 // }
 
-export default connect(null, null)(NewsCard)
+export default connect(mapStateToProps, null)(NewsCard)
