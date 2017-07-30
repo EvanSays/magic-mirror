@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NewsCardContainer from '../../containers/NewsCardContainer'
+import NewsCard from '../NewsCard/NewsCard'
 import PropTypes from 'prop-types';
 
 class News extends Component {
@@ -12,16 +12,15 @@ class News extends Component {
       this.props.getNewsData();
     }, 1000 * 60 * 30)
   }
-  
+
   componentWillMount(){
     this.props.getNewsData();
   }
 
   render(){
     const { newsObj } = this.props;
-
     return(
-      <NewsCardContainer newsObj={newsObj}/>
+      <NewsCard newsObj={newsObj}/>
     )
   }
 }

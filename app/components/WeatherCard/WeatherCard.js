@@ -2,7 +2,6 @@ import React from 'react'
 import Skycons from 'react-skycons'
 
 const WeatherCard  = (props) => {
-  console.log(props);
   const { weatherObj } = props;
 
   let hourly = []
