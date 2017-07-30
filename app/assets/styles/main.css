@@ -180,6 +180,10 @@ body {
   width: 50px;
 }
 
+.github-icon {
+  background-image: url('../icons/github/github_icon.png');
+}
+
 /*=======================================
 >>>>>>>>  Key Frames  <<<<<<<<
 ========================================*/
