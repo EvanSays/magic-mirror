@@ -125,7 +125,6 @@ export const setNewsData = (dataObj) => {
 }
 
 export const setWeatherData = (dataObj) => {
-
   return {
     type: 'WEATHER_DATA',
     weatherData: dataObj
