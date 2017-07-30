@@ -9,14 +9,15 @@ let win
 
 function createWindow () {
   // Create the browser window.
+
   win = new BrowserWindow({webPreferences: { experimentalFeatures: true, webSecurity: false } })
+//   win = new BrowserWindow({webPreferences: { experimentalFeatures: true, webSecurity: false }, frame: false, titleBarStyle: 'hidden'})
 
   win.webContents.on('did-finish-load', (event) => {
     // win.maximize()
     // win.setFullScreen(true)
     win.show()
   })
-
 
   // and load the index.html of the app.
   win.loadURL(url.format({
