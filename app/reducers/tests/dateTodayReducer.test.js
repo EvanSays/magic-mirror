@@ -1,9 +1,14 @@
-import { setDateTodayData } from './dateTodayReducer';
+import { setDateTodayData } from '../dateTodayReducer';
 
 describe('setDateTodayData  reducer', () => {
   it('Should return an initial state', () => {
     expect(setDateTodayData(undefined, {})).toEqual([]);
   });
+
+  it('Should not affect state', () => {
+    const dataState = setDateTodayData([], {type: "NOT_EXISTS"})
+    expect(dataState).toEqual([])
+  })
 
   it('Should return an updated state if given an action', () => {
     const emptyState = setDateTodayData(undefined, {});

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import Skycons from 'react-skycons'
-import WeatherCardContainer from '../../containers/WeatherCardContainer'
+import WeatherCard from '../WeatherCard/WeatherCard'
 
 class Weather extends Component {
   constructor() {
@@ -21,7 +21,7 @@ class Weather extends Component {
   render(){
     return(
       <div>
-        <WeatherCardContainer/>
+        <WeatherCard weatherObj={this.props.weatherObj}/>
       </div>
     )
   }

@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "color-convert": "^1.9.0",
     "electron": "^1.6.11",
     "express": "^4.14.0",
     "express-cors": "0.0.3",
@@ -30,6 +31,7 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
     "react-skycons": "^0.3.0",
+    "react-test-renderer": "^15.6.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0"
@@ -37,9 +39,12 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-jest": "^20.0.3",
+    "babel-preset-react": "^6.24.1",
     "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",

@@ -1,9 +1,14 @@
-import { setNewsData } from './newsReducer';
+import { setNewsData } from '../newsReducer';
 
 describe('setNewsData  reducer', () => {
   it('Should return an initial state', () => {
     expect(setNewsData(undefined, {})).toEqual([]);
   });
+
+  it('Should not affect state ', () =>{
+    const dataState = setNewsData([], {type: "NOT_EXISTS"})
+    expect(dataState).toEqual([])
+  })
 
   it('Should return an updated state if given an action', () => {
     const emptyState = setNewsData(undefined, {});
