@@ -13,9 +13,10 @@ class Auth extends Component {
 
 
   render() {
-    console.log('authobj', this.props);
+    // console.log('authobj', this.props);
     return (
-      <div className='github'>
+      <div className='notifications'>
+        <div className='github-icon'></div>
         <AuthCard authObj={this.props.authObj}/>
         <button onClick={() => this.props.getAuthData()}>Login</button>
       </div>

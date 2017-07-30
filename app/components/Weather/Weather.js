@@ -20,7 +20,7 @@ class Weather extends Component {
 
   render(){
     return(
-      <div>
+      <div className="weather">
         <WeatherCard weatherObj={this.props.weatherObj}/>
       </div>
     )

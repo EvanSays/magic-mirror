@@ -27,7 +27,7 @@ body {
 }
 
 
-.wrapper {
+.all {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
@@ -166,7 +166,6 @@ body {
   animation-duration: 5s;
   align-self: end;
   justify-self: end;
-  align-self: end;
 }
 .gif img {
   width: 100%;
@@ -174,15 +173,63 @@ body {
 }
 
 /*=======================================
->>>>>>>>  Github  <<<<<<<<
+>>>>>>>>  Notifications  <<<<<<<<
 ========================================*/
-.github img {
-  width: 50px;
+
+.notifications {
+  grid-column: 5;
+  grid-row: 5;
+  justify-self: end;
+  align-self: end;
+}
+
+.notifications h2 {
+  font-size: 15px;
+  font-weight: 200;
+  margin-left: 16px;
+  text-align: left;
+}
+
+.notifications h3 {
+  font-size: 12px;
+  font-weight: 200;
 }
 
 .github-icon {
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-image: url('../icons/github/github_icon.png');
 }
+
+.pull-request-icon {
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../icons/github/pull_request_icon.png');
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+}
+
+.notifications .info {
+  display: flex;
+  align-items: center;
+  margin-left: 55px;
+  justify-content: space-between;
+}
+
+.notifications .history {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
 
 /*=======================================
 >>>>>>>>  Key Frames  <<<<<<<<

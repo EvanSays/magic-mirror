@@ -19,7 +19,7 @@ const WeatherCard  = (props) => {
   }
 
   return(
-    <div className="weather">
+    <div>
       <div className="current">
         <h2>{weatherObj.temp}°</h2>
         <Skycons className='icon'
