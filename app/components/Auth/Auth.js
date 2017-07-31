@@ -8,11 +8,14 @@ class Auth extends Component {
   }
 
   componentDidMount() {
-    this.props.getAuthData()
+    setInterval(() => {
+      this.props.getAuthData();
+    }, 1000 * 60 * 30)
   }
 
   componentWillMount() {
     runOauth()
+    this.props.getAuthData()
   }
 
   render() {
