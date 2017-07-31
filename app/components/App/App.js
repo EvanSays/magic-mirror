@@ -9,7 +9,6 @@ class App extends Component {
     super()
   }
 
-
   render(){
     return(
       <div className='all'>

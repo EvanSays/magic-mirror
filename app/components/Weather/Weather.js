@@ -14,12 +14,12 @@ class Weather extends Component {
     }, 1000 * 60 * 30)
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.getWeatherData();
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="weather">
         <WeatherCard weatherObj={this.props.weatherObj}/>
       </div>
@@ -28,10 +28,7 @@ class Weather extends Component {
 }
 
 Weather.propTypes = {
-  weatherObj: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object
-  ])
+  weatherObj: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 }
 
 export default Weather;

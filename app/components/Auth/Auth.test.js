@@ -1,7 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TestUtils from 'react-dom/test-utils'
-import { createRenderer } from 'react-test-renderer/shallow'
 import Auth from './Auth'
 
 describe('Auth component tests', () => {

@@ -22057,7 +22057,6 @@
 	
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
-	
 	    getWeatherData: function getWeatherData() {
 	      dispatch((0, _actions.fetchWeatherData)());
 	    }
@@ -25376,7 +25375,6 @@
 	var WeatherCard = function WeatherCard(props) {
 	  var weatherObj = props.weatherObj;
 	
-	
 	  var hourly = [];
 	  if (weatherObj.hourly) {
 	    hourly = weatherObj.hourly.map(function (hour, i) {
@@ -25386,13 +25384,9 @@
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          hour[0],
-	          'pm'
+	          hour[0]
 	        ),
-	        _react2.default.createElement(_reactSkycons2.default, { className: 'icon',
-	          color: 'white',
-	          icon: hour[1],
-	          autoplay: true }),
+	        _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: hour[1], autoplay: true }),
 	        _react2.default.createElement(
 	          'h2',
 	          null,
@@ -25415,10 +25409,7 @@
 	        weatherObj.temp,
 	        '\xB0'
 	      ),
-	      _react2.default.createElement(_reactSkycons2.default, { className: 'icon',
-	        color: 'white',
-	        icon: weatherObj.icon,
-	        autoplay: true })
+	      _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: weatherObj.icon, autoplay: true })
 	    ),
 	    _react2.default.createElement(
 	      'p',
@@ -25455,9 +25446,6 @@
 	var _moment2 = _interopRequireDefault(_moment);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// import * as firebase from "firebase";
-	
 	
 	var fetchWeatherData = exports.fetchWeatherData = function fetchWeatherData() {
 	
@@ -25545,17 +25533,11 @@
 	};
 	
 	var setAuthData = exports.setAuthData = function setAuthData(dataObj) {
-	  return {
-	    type: 'AUTH_DATA',
-	    authData: dataObj
-	  };
+	  return { type: 'AUTH_DATA', authData: dataObj };
 	};
 	
 	var setGifyData = exports.setGifyData = function setGifyData(dataObj) {
-	  return {
-	    type: 'GIFY_DATA',
-	    gifyData: dataObj
-	  };
+	  return { type: 'GIFY_DATA', gifyData: dataObj };
 	};
 	
 	var fetchDateTodayData = exports.fetchDateTodayData = function fetchDateTodayData() {
@@ -25567,31 +25549,19 @@
 	};
 	
 	var setDateTodayData = exports.setDateTodayData = function setDateTodayData(dataObj) {
-	  return {
-	    type: 'DATE_TODAY_DATA',
-	    dateTodayData: dataObj
-	  };
+	  return { type: 'DATE_TODAY_DATA', dateTodayData: dataObj };
 	};
 	
 	var setNewsData = exports.setNewsData = function setNewsData(dataObj) {
-	  return {
-	    type: 'NEWS_DATA',
-	    newsData: dataObj
-	  };
+	  return { type: 'NEWS_DATA', newsData: dataObj };
 	};
 	
 	var setWeatherData = exports.setWeatherData = function setWeatherData(dataObj) {
-	  return {
-	    type: 'WEATHER_DATA',
-	    weatherData: dataObj
-	  };
+	  return { type: 'WEATHER_DATA', weatherData: dataObj };
 	};
 	
 	var setTimeData = exports.setTimeData = function setTimeData(dataObj) {
-	  return {
-	    type: 'TIME_DATA',
-	    timeData: dataObj
-	  };
+	  return { type: 'TIME_DATA', timeData: dataObj };
 	};
 
 /***/ }),
@@ -41623,7 +41593,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var NewsCard = function NewsCard(props) {
-	
 	  var article = [];
 	  if (props.newsObj.articles) {
 	    article = props.newsObj.articles.map(function (news, i) {
@@ -41893,15 +41862,13 @@
 	const path = __webpack_require__(359)
 	const url = __webpack_require__(360)
 	
-	// Your GitHub Applications Credentials
 	var options = {
 	  client_id: '3adf36cf6067ebae50a4',
 	  client_secret: 'c5ecb383308ea212342eda36f9c90b2fb0e38e46',
-	  scopes: ["notifications"] // Scopes limit access for OAuth tokens.
+	  scopes: ["notifications"]
 	};
 	
 	const runOauth = () => {
-	  // Build the OAuth consent page URL
 	  var authWindow = new BrowserWindow({width: 800, height: 600, show: false, 'node-integration': false});
 	  var githubUrl = 'https://github.com/login/oauth/authorize?';
 	  var authUrl = githubUrl + 'client_id=' + options.client_id + '&scope=' + options.scopes;
@@ -41916,11 +41883,9 @@
 	    var error = /\?error=(.+)$/.exec(url);
 	
 	    if (code || error) {
-	      // Close the browser if code found or error
 	      authWindow.destroy();
 	    }
 	
-	    // If there is a code, proceed to get token from github
 	    if (code) {
 	      requestGithubToken(options, code)
 	    } else if (error) {
@@ -41929,7 +41894,6 @@
 	    }
 	  }
 	
-	  // Handle the response from GitHub - See Update from 4/12/2015
 	  authWindow.webContents.on('will-navigate', function(event, url) {
 	    handleCallback(url);
 	  });
@@ -41938,7 +41902,6 @@
 	    handleCallback(newUrl);
 	  });
 	
-	  // Reset the authWindow on close
 	  authWindow.on('close', function() {
 	    authWindow = null;
 	  }, false);
@@ -41960,7 +41923,6 @@
 	    })
 	  }
 	}
-	
 	
 	module.exports = runOauth
 

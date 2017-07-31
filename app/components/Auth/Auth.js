@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import runOauth from '../../../oauth.js'
 import AuthCard from '../AuthCard/AuthCard'
 

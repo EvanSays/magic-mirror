@@ -1,10 +1,18 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import TestUtils from 'react-dom/test-utils'
-import { createRenderer } from 'react-test-renderer/shallow'
 import DateToday from './DateToday'
+import fetchMock from 'fetch-mock'
 
 describe('DateToday component tests', () => {
+
+  const resolveAfter2Seconds = () => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+  }
+
   const myMock = jest.fn();
   const wrapper = mount(<DateToday getDateTodayData={myMock} dateObj={[]}/>)
 
@@ -12,8 +20,9 @@ describe('DateToday component tests', () => {
     expect(wrapper.find('.date').length).toEqual(1)
   })
 
-  it.skip('should call a function on componentDidMount', () => {
-    console.log(wrapper.debug());
+  it('should call a function on componentDidMount', async() => {
+    await resolveAfter2Seconds()
+
     expect(myMock).toHaveBeenCalledTimes(1)
   })
 })

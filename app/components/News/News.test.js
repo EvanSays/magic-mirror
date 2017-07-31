@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TestUtils from 'react-dom/test-utils'
-import { createRenderer } from 'react-test-renderer/shallow'
 import News from './News'
+import fetchMock from 'fetch-mock'
 
 describe('News component tests', () => {
+
   const myMock = jest.fn();
   const wrapper = shallow(<News getNewsData={myMock}/>)
 

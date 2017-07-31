@@ -1,4 +1,4 @@
-import {setAuthData} from '../AuthReducer';
+import { setAuthData } from '../AuthReducer';
 
 describe('setAuthData  reducer', () => {
   it('Should return an initial state', () => {
