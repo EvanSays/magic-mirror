@@ -26,10 +26,7 @@ class News extends Component {
 }
 
 News.propTypes = {
-  newsObj: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object
-  ])
+  newsObj: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 }
 
 export default News;

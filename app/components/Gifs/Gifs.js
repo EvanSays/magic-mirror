@@ -6,26 +6,25 @@ class Gifs extends Component {
     super()
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.getGifyData();
   }
 
   componentDidMount() {
     setInterval(() => {
       this.props.getGifyData()
-    },10000)
+    }, 10000)
   }
 
-
-  render(){
-    const { gifyObj } = this.props;
+  render() {
+    const {gifyObj} = this.props;
 
     let gifUrl = []
-    if(gifyObj) {
+    if (gifyObj) {
       gifUrl = gifyObj.url
     }
 
-    return(
+    return (
       <div className="gif">
         <img src={gifUrl} alt="random gif"/>
       </div>
@@ -34,10 +33,7 @@ class Gifs extends Component {
 }
 
 Gifs.propTypes = {
-  gifyObj: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object
-  ])
+  gifyObj: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 }
 
 export default Gifs;

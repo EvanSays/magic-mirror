@@ -2,15 +2,13 @@ const {BrowserWindow, webContents} = require('electron').remote
 const path = require('path')
 const url = require('url')
 
-// Your GitHub Applications Credentials
 var options = {
   client_id: '3adf36cf6067ebae50a4',
   client_secret: 'c5ecb383308ea212342eda36f9c90b2fb0e38e46',
-  scopes: ["notifications"] // Scopes limit access for OAuth tokens.
+  scopes: ["notifications"]
 };
 
 const runOauth = () => {
-  // Build the OAuth consent page URL
   var authWindow = new BrowserWindow({width: 800, height: 600, show: false, 'node-integration': false});
   var githubUrl = 'https://github.com/login/oauth/authorize?';
   var authUrl = githubUrl + 'client_id=' + options.client_id + '&scope=' + options.scopes;
@@ -25,11 +23,9 @@ const runOauth = () => {
     var error = /\?error=(.+)$/.exec(url);
 
     if (code || error) {
-      // Close the browser if code found or error
       authWindow.destroy();
     }
 
-    // If there is a code, proceed to get token from github
     if (code) {
       requestGithubToken(options, code)
     } else if (error) {
@@ -38,7 +34,6 @@ const runOauth = () => {
     }
   }
 
-  // Handle the response from GitHub - See Update from 4/12/2015
   authWindow.webContents.on('will-navigate', function(event, url) {
     handleCallback(url);
   });
@@ -47,7 +42,6 @@ const runOauth = () => {
     handleCallback(newUrl);
   });
 
-  // Reset the authWindow on close
   authWindow.on('close', function() {
     authWindow = null;
   }, false);
@@ -69,6 +63,5 @@ const runOauth = () => {
     })
   }
 }
-
 
 module.exports = runOauth
