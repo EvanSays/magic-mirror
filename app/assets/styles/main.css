@@ -125,7 +125,7 @@ body {
 ========================================*/
 
 .news {
-  grid-column: 2 / span 3;
+  grid-column: 2 / span 2;
   grid-row: 5;
   align-content: end;
   align-self: start;

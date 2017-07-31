@@ -25448,7 +25448,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var fetchWeatherData = exports.fetchWeatherData = function fetchWeatherData() {
-	
 	  return function (dispatch) {
 	    fetch('http://api.wunderground.com/api/' + _apiKeys.wundergroundKey + '/forecast/conditions/hourly/q/CO/Denver.json').then(function (res) {
 	      if (!res.ok) {
@@ -41858,7 +41857,7 @@
 /* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	const {BrowserWindow, webContents} = __webpack_require__(358).remote
+	const { BrowserWindow, webContents } = __webpack_require__(358).remote
 	const path = __webpack_require__(359)
 	const url = __webpack_require__(360)
 	

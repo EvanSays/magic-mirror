@@ -3,7 +3,6 @@ import { wundergroundKey, newsApiKey, darkSkyKey, gifyKey } from '../data/apiKey
 import moment from 'moment'
 
 export const fetchWeatherData = () => {
-
   return (dispatch) => {
     fetch(`http://api.wunderground.com/api/${wundergroundKey}/forecast/conditions/hourly/q/CO/Denver.json`).then(res => {
       if (!res.ok) {
