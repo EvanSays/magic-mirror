@@ -39,7 +39,6 @@ const runOauth = () => {
   }
 
   // Handle the response from GitHub - See Update from 4/12/2015
-
   authWindow.webContents.on('will-navigate', function(event, url) {
     handleCallback(url);
   });
@@ -66,18 +65,9 @@ const runOauth = () => {
       return response.text()
     }).then((paramsString) => {
       let params = new URLSearchParams(paramsString)
-      console.log('access_token', params.get('access_token'))
-
-      //  return params.get('access_token')
-
       window.localStorage.setItem('githubAccessToken', params.get('access_token'))
-
-      console.log(window.localStorage.githubAccessToken);
-      // getUserInfo(window.localStorage.githubAccessToken)
     })
-
   }
-
 }
 
 
