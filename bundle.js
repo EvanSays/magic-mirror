@@ -41848,12 +41848,17 @@
 	  _createClass(Auth, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.props.getAuthData();
+	      var _this2 = this;
+	
+	      setInterval(function () {
+	        _this2.props.getAuthData();
+	      }, 1000 * 60 * 30);
 	    }
 	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      (0, _oauth2.default)();
+	      this.props.getAuthData();
 	    }
 	  }, {
 	    key: 'render',
