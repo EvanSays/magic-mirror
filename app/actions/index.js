@@ -81,7 +81,7 @@ export const fetchAuthData = () => {
       .then(data => fetch(data.received_events_url))
       .then(events => events.json())
       .then(results => {
-         const request = results.filter(result => result.type === 'PullRequestEvent' ).map(event => new AuthData(event)).slice(0,4)
+         const request = results.filter(result => result.type === 'PullRequestEvent' ).map(event => new AuthData(event))
          dispatch(setAuthData(request));
       })
   }

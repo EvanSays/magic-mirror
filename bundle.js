@@ -25538,7 +25538,7 @@
 	        return result.type === 'PullRequestEvent';
 	      }).map(function (event) {
 	        return new _scrubbers.AuthData(event);
-	      }).slice(0, 4);
+	      });
 	      dispatch(setAuthData(request));
 	    });
 	  };
@@ -41848,26 +41848,29 @@
 	  _createClass(Auth, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      this.props.getAuthData();
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
 	      (0, _oauth2.default)();
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
-	
-	      // console.log('authobj', this.props);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'notifications' },
-	        _react2.default.createElement('div', { className: 'github-icon' }),
-	        _react2.default.createElement(_AuthCard2.default, { authObj: this.props.authObj }),
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              return _this2.props.getAuthData();
-	            } },
-	          'Login'
-	        )
+	          'header',
+	          null,
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Notifications'
+	          )
+	        ),
+	        _react2.default.createElement(_AuthCard2.default, { authObj: this.props.authObj })
 	      );
 	    }
 	  }]);
@@ -41922,7 +41925,6 @@
 	  }
 	
 	  // Handle the response from GitHub - See Update from 4/12/2015
-	
 	  authWindow.webContents.on('will-navigate', function(event, url) {
 	    handleCallback(url);
 	  });
@@ -41949,18 +41951,9 @@
 	      return response.text()
 	    }).then((paramsString) => {
 	      let params = new URLSearchParams(paramsString)
-	      console.log('access_token', params.get('access_token'))
-	
-	      //  return params.get('access_token')
-	
 	      window.localStorage.setItem('githubAccessToken', params.get('access_token'))
-	
-	      console.log(window.localStorage.githubAccessToken);
-	      // getUserInfo(window.localStorage.githubAccessToken)
 	    })
-	
 	  }
-	
 	}
 	
 	
@@ -41999,11 +41992,14 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _moment = __webpack_require__(232);
+	
+	var _moment2 = _interopRequireDefault(_moment);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var AuthCard = function AuthCard(props) {
 	  var authObj = props.authObj;
-	
 	
 	  var request = authObj.map(function (obj, i) {
 	    if (obj.action === 'opened') {
@@ -42012,22 +42008,30 @@
 	        { className: 'wrapper', key: i },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'history' },
-	          _react2.default.createElement('div', { className: 'pull-request-icon' }),
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            obj.title
-	          )
+	          { className: 'icon-container' },
+	          _react2.default.createElement('div', { className: 'pull-request-icon' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'info' },
-	          _react2.default.createElement('img', { className: 'avatar', src: obj.avatar, alt: 'user avatar' }),
+	          { className: 'info-container' },
 	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            obj.created
+	            'div',
+	            { className: 'title' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              obj.title
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'avatar-date-container' },
+	            _react2.default.createElement('img', { className: 'avatar', src: obj.avatar, alt: 'user avatar' }),
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              (0, _moment2.default)(obj.created).fromNow()
+	            )
 	          )
 	        )
 	      );

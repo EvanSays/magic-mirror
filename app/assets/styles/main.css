@@ -179,20 +179,55 @@ body {
 .notifications {
   grid-column: 5;
   grid-row: 5;
+  animation-name: git;
+  animation-duration: 5s;
   justify-self: end;
   align-self: end;
 }
 
+.notifications header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifications h1 {
+  font-size: 18px;
+  font-weight: 200;
+}
+
+.notifications .wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 14px;
+}
+
+.notifications .info-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  width: 100%
+}
+
 .notifications h2 {
   font-size: 15px;
-  font-weight: 200;
-  margin-left: 16px;
+  font-weight: 400;
   text-align: left;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .notifications h3 {
   font-size: 12px;
   font-weight: 200;
+}
+
+
+.notifications .avatar-date-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .github-icon {
@@ -214,20 +249,7 @@ body {
 .avatar {
   width: 25px;
   height: 25px;
-  border-radius: 25px;
-}
-
-.notifications .info {
-  display: flex;
-  align-items: center;
-  margin-left: 55px;
-  justify-content: space-between;
-}
-
-.notifications .history {
-  display: flex;
-  align-items: center;
-  margin: 10px;
+  border-radius: 5px;
 }
 
 
@@ -255,7 +277,7 @@ body {
   }
 }
 
-@keyframes gif {
+@keyframes git {
   from {
     transform : translateX(550px);
   }

@@ -1,14 +1,25 @@
 import React from 'react'
+import moment from 'moment'
 
 const AuthCard = (props) => {
   const { authObj } = props;
-
   const request = authObj.map((obj, i) => {
       if(obj.action === 'opened') {
         return <div className='wrapper' key={i}>
-          <div className='history'><div className='pull-request-icon'></div><h2>{obj.title}</h2></div>
-          <div className='info'><img className='avatar' src={obj.avatar} alt="user avatar"/><h3>{obj.created}</h3></div>
-        </div>
+                <div className='icon-container'>
+                  <div className='pull-request-icon'></div>
+                </div>
+                  <div className='info-container'>
+                    <div className='title'>
+                      <h2>{obj.title}</h2>
+                    </div>
+
+                    <div className='avatar-date-container'>
+                      <img className='avatar' src={obj.avatar} alt="user avatar"/>
+                      <h3>{moment(obj.created).fromNow()}</h3>
+                    </div>
+                  </div>
+                </div>
       }
   })
   return (

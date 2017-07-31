@@ -8,17 +8,22 @@ class Auth extends Component {
   }
 
   componentDidMount() {
+    this.props.getAuthData()
+  }
+
+  componentWillMount() {
     runOauth()
   }
 
-
   render() {
-    // console.log('authobj', this.props);
     return (
       <div className='notifications'>
-        <div className='github-icon'></div>
+        <header>
+          {/* <div className='github-icon'></div> */}
+          <h1>Notifications</h1>
+        </header>
         <AuthCard authObj={this.props.authObj}/>
-        <button onClick={() => this.props.getAuthData()}>Login</button>
+        {/* <button onClick={() => this.props.getAuthData()}>Login</button> */}
       </div>
     )
   }
