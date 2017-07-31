@@ -5,7 +5,6 @@ const cors = require('express-cors');
 const bodyParser = require('body-parser')
 const port = (process.env.PORT || 3000);
 const app = express();
-const router = require('./router');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,7 +28,6 @@ app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
 
 app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
 
-// app.use('/api', router);
 app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
 
 app.listen(port);
