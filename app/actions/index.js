@@ -19,7 +19,7 @@ export const fetchDarkSkyData = () => {
   return (dispatch) => {
     fetch(`https://api.darksky.net/forecast/${darkSkyKey}/39.750784,-104.996579`, {
       method: 'GET',
-      headers: {"Accept-Encoding": "gzip"}
+      headers: { "Accept-Encoding": "gzip" }
     }).then(res => {
       if (!res.ok) {
         throw Error(res.statusText)
@@ -60,7 +60,11 @@ export const fetchGifyData = () => {
 export const fetchAuthData = () => {
   return (dispatch) => {
     const token = window.localStorage.githubAccessToken
-    fetch(`https://api.github.com/user?access_token=${token}`).then(res => res.json()).then(data => fetch(data.received_events_url)).then(events => events.json()).then(results => {
+    fetch(`https://api.github.com/user?access_token=${token}`)
+    .then(res => res.json())
+    .then(data => fetch(data.received_events_url))
+    .then(events => events.json())
+    .then(results => {
       const request = results.filter(result => result.type === 'PullRequestEvent').map(event => new AuthData(event))
       dispatch(setAuthData(request));
     })
