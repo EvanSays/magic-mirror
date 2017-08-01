@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import Skycons from 'react-skycons'
 import WeatherCard from '../WeatherCard/WeatherCard'
 
 class Weather extends Component {

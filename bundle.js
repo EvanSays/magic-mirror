@@ -22058,7 +22058,7 @@
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
 	    getWeatherData: function getWeatherData() {
-	      dispatch((0, _actions.fetchWeatherData)());
+	      dispatch((0, _actions.fetchDarkSkyData)());
 	    }
 	  };
 	};
@@ -24448,11 +24448,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _reactSkycons = __webpack_require__(227);
-	
-	var _reactSkycons2 = _interopRequireDefault(_reactSkycons);
-	
-	var _WeatherCard = __webpack_require__(229);
+	var _WeatherCard = __webpack_require__(227);
 	
 	var _WeatherCard2 = _interopRequireDefault(_WeatherCard);
 	
@@ -24517,6 +24513,80 @@
 	  value: true
 	});
 	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactSkycons = __webpack_require__(228);
+	
+	var _reactSkycons2 = _interopRequireDefault(_reactSkycons);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var WeatherCard = function WeatherCard(props) {
+	  var weatherObj = props.weatherObj;
+	
+	  var hourly = [];
+	  if (weatherObj.hourly) {
+	    hourly = weatherObj.hourly.map(function (hour, i) {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'hourly', key: i * 10 },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          hour[0]
+	        ),
+	        _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: hour[1], autoplay: true }),
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          hour[2],
+	          '\xB0'
+	        )
+	      );
+	    });
+	  }
+	
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'current' },
+	      _react2.default.createElement(
+	        'h2',
+	        null,
+	        weatherObj.temp,
+	        '\xB0'
+	      ),
+	      _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: weatherObj.icon, autoplay: true })
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      weatherObj.city
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'hourly-container' },
+	      hourly
+	    )
+	  );
+	};
+	
+	exports.default = WeatherCard;
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -24537,7 +24607,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Skycons = __webpack_require__(228)(window);
+	var Skycons = __webpack_require__(229)(window);
 	
 	var ReactSkycons = function (_Component) {
 	  _inherits(ReactSkycons, _Component);
@@ -24588,13 +24658,16 @@
 	    value: function render() {
 	      var props = {};
 	
+	      var defaultStyle = {
+	      };
+	
 	      for (var prop in this.props) {
 	        props[prop] = this.props[prop];
 	      }
 	
 	      delete props.autoplay;
 	
-	      return _react2.default.createElement('canvas', _extends(props));
+	      return _react2.default.createElement('canvas', _extends({ style: defaultStyle }, props));
 	    }
 	  }]);
 	
@@ -24616,7 +24689,7 @@
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports) {
 
 	/* jshint browser:true, node:true */
@@ -25353,80 +25426,6 @@
 
 
 /***/ }),
-/* 229 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactSkycons = __webpack_require__(227);
-	
-	var _reactSkycons2 = _interopRequireDefault(_reactSkycons);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var WeatherCard = function WeatherCard(props) {
-	  var weatherObj = props.weatherObj;
-	
-	  var hourly = [];
-	  if (weatherObj.hourly) {
-	    hourly = weatherObj.hourly.map(function (hour, i) {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'hourly', key: i * 10 },
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          hour[0]
-	        ),
-	        _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: hour[1], autoplay: true }),
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          hour[2],
-	          '\xB0'
-	        )
-	      );
-	    });
-	  }
-	
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'current' },
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        weatherObj.temp,
-	        '\xB0'
-	      ),
-	      _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: weatherObj.icon, autoplay: true })
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      weatherObj.city
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'hourly-container' },
-	      hourly
-	    )
-	  );
-	};
-	
-	exports.default = WeatherCard;
-
-/***/ }),
 /* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25464,10 +25463,9 @@
 	
 	var fetchDarkSkyData = exports.fetchDarkSkyData = function fetchDarkSkyData() {
 	  return function (dispatch) {
-	    fetch('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + _apiKeys.darkSkyKey + '/39.750784,-104.996579', {
+	    fetch('https://api.darksky.net/forecast/' + _apiKeys.darkSkyKey + '/39.750784,-104.996579', {
 	      method: 'GET',
-	      mode: 'no-cors',
-	      headers: new Headers()
+	      headers: { "Accept-Encoding": "gzip" }
 	    }).then(function (res) {
 	      if (!res.ok) {
 	        throw Error(res.statusText);

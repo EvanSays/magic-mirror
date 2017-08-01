@@ -17,10 +17,9 @@ export const fetchWeatherData = () => {
 
 export const fetchDarkSkyData = () => {
   return (dispatch) => {
-    fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkSkyKey}/39.750784,-104.996579`, {
+    fetch(`https://api.darksky.net/forecast/${darkSkyKey}/39.750784,-104.996579`, {
       method: 'GET',
-      mode: 'no-cors',
-      headers: new Headers()
+      headers: {"Accept-Encoding": "gzip"}
     }).then(res => {
       if (!res.ok) {
         throw Error(res.statusText)
