@@ -609,3 +609,25 @@ export const mockGithubRaw = {
   "created_at": "2016-06-16T22:58:57Z",
   "updated_at": "2017-07-31T03:01:29Z"
 }
+
+export const mockDateTodayResult = [
+  "Tuesday",
+  "3:40:18 pm"
+]
+
+export const mockAuthRaw = [
+  {
+    "title": "Update README.md",
+    "avatar": "https://avatars0.githubusercontent.com/u/20492875?v=4",
+    "created": "2017-07-26T21:55:43Z",
+    "action": "opened",
+    "number": 47
+  },
+  {
+    "title": "add local storage check logic on componentDidMount",
+    "avatar": "https://avatars6.githubusercontent.com/u/24419273?v=4",
+    "created": "2017-07-17T06:34:05Z",
+    "action": "closed",
+    "number": 46
+  }
+]

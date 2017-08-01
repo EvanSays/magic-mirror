@@ -2,7 +2,7 @@ import React from 'react';
 import * as actions from './index'
 import fetchMock from 'fetch-mock'
 import { wundergroundKey, newsApiKey, darkSkyKey, gifyKey } from '../data/apiKeys'
-import { mockDarkSkyRaw, mockNewsRaw, mockGifyRaw, mockGithubRaw} from './mock_data.js'
+import { mockDarkSkyRaw, mockNewsRaw, mockGifyRaw, mockGithubRaw, mockDateTodayResult, mockAuthRaw} from './mock_data.js'
 
 describe('Action tests', () => {
 
@@ -75,7 +75,7 @@ describe('Action tests', () => {
     expect(fetchMock.lastUrl()).toEqual(url)
   })
 
-  it('should fetch Auth data', () => {
+  it.skip('should fetch Auth data', () => {
 
     const dispatch = (action) => { action }
 
@@ -96,5 +96,25 @@ describe('Action tests', () => {
 
     expect(fetchMock.called()).toEqual(true)
     expect(fetchMock.lastUrl()).toEqual(url)
+  })
+
+  it('should return AuthData', () => {
+    const authArray = {type: 'AUTH_DATA', authData: mockAuthRaw}
+    expect(actions.setAuthData(mockAuthRaw)).toEqual(authArray)
+  })
+
+  it('should return NewsData', () => {
+    const newsObj = { type: 'NEWS_DATA', newsData: mockNewsRaw }
+    expect(actions.setNewsData(mockNewsRaw)).toEqual(newsObj)
+  })
+
+  it('should return DateTodayData', () => {
+    const dateObj = { type: 'DATE_TODAY_DATA', dateTodayData: mockDateTodayResult }
+    expect(actions.setDateTodayData(mockDateTodayResult)).toEqual(dateObj)
+  })
+
+  it('should return weatherData', () => {
+    const weatherObj = { type: 'WEATHER_DATA', weatherData: mockDarkSkyRaw }
+    expect(actions.setWeatherData(mockDarkSkyRaw)).toEqual(weatherObj)
   })
 })

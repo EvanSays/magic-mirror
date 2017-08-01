@@ -9,7 +9,7 @@ var options = {
 };
 
 const runOauth = () => {
-  var authWindow = new BrowserWindow({width: 800, height: 600, show: false, 'node-integration': false});
+  var authWindow = new BrowserWindow({width: 800, height: 600, alwaysOnTop: true, 'node-integration': false});
   var githubUrl = 'https://github.com/login/oauth/authorize?';
   var authUrl = githubUrl + 'client_id=' + options.client_id + '&scope=' + options.scopes;
   authWindow.loadURL(authUrl);

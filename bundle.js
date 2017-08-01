@@ -25434,7 +25434,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.setTimeData = exports.setWeatherData = exports.setNewsData = exports.setDateTodayData = exports.fetchDateTodayData = exports.setGifyData = exports.setAuthData = exports.fetchAuthData = exports.fetchGifyData = exports.fetchNewsData = exports.fetchDarkSkyData = exports.fetchWeatherData = undefined;
+	exports.setWeatherData = exports.setNewsData = exports.setDateTodayData = exports.setGifyData = exports.setAuthData = exports.fetchDateTodayData = exports.fetchAuthData = exports.fetchGifyData = exports.fetchNewsData = exports.fetchDarkSkyData = exports.fetchWeatherData = undefined;
 	
 	var _scrubbers = __webpack_require__(231);
 	
@@ -25529,20 +25529,20 @@
 	  };
 	};
 	
-	var setAuthData = exports.setAuthData = function setAuthData(dataObj) {
-	  return { type: 'AUTH_DATA', authData: dataObj };
-	};
-	
-	var setGifyData = exports.setGifyData = function setGifyData(dataObj) {
-	  return { type: 'GIFY_DATA', gifyData: dataObj };
-	};
-	
 	var fetchDateTodayData = exports.fetchDateTodayData = function fetchDateTodayData() {
 	  return function (dispatch) {
 	    var day = (0, _moment2.default)().format('dddd');
 	    var time = (0, _moment2.default)().format('h:mm:ss a');
 	    dispatch(setDateTodayData([day, time]));
 	  };
+	};
+	
+	var setAuthData = exports.setAuthData = function setAuthData(dataObj) {
+	  return { type: 'AUTH_DATA', authData: dataObj };
+	};
+	
+	var setGifyData = exports.setGifyData = function setGifyData(dataObj) {
+	  return { type: 'GIFY_DATA', gifyData: dataObj };
 	};
 	
 	var setDateTodayData = exports.setDateTodayData = function setDateTodayData(dataObj) {
@@ -25555,10 +25555,6 @@
 	
 	var setWeatherData = exports.setWeatherData = function setWeatherData(dataObj) {
 	  return { type: 'WEATHER_DATA', weatherData: dataObj };
-	};
-	
-	var setTimeData = exports.setTimeData = function setTimeData(dataObj) {
-	  return { type: 'TIME_DATA', timeData: dataObj };
 	};
 
 /***/ }),
@@ -41866,7 +41862,7 @@
 	};
 	
 	const runOauth = () => {
-	  var authWindow = new BrowserWindow({width: 800, height: 600, show: false, 'node-integration': false});
+	  var authWindow = new BrowserWindow({width: 800, height: 600, alwaysOnTop: true, 'node-integration': false});
 	  var githubUrl = 'https://github.com/login/oauth/authorize?';
 	  var authUrl = githubUrl + 'client_id=' + options.client_id + '&scope=' + options.scopes;
 	  authWindow.loadURL(authUrl);

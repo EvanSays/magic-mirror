@@ -71,20 +71,20 @@ export const fetchAuthData = () => {
   }
 }
 
-export const setAuthData = (dataObj) => {
-  return {type: 'AUTH_DATA', authData: dataObj}
-}
-
-export const setGifyData = (dataObj) => {
-  return {type: 'GIFY_DATA', gifyData: dataObj}
-}
-
 export const fetchDateTodayData = () => {
   return (dispatch) => {
     const day = moment().format('dddd');
     const time = moment().format('h:mm:ss a');
     dispatch(setDateTodayData([day, time]))
   }
+}
+
+export const setAuthData = (dataObj) => {
+  return {type: 'AUTH_DATA', authData: dataObj}
+}
+
+export const setGifyData = (dataObj) => {
+  return {type: 'GIFY_DATA', gifyData: dataObj}
 }
 
 export const setDateTodayData = (dataObj) => {
@@ -97,8 +97,4 @@ export const setNewsData = (dataObj) => {
 
 export const setWeatherData = (dataObj) => {
   return {type: 'WEATHER_DATA', weatherData: dataObj}
-}
-
-export const setTimeData = (dataObj) => {
-  return {type: 'TIME_DATA', timeData: dataObj}
 }

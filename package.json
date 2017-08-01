@@ -7,7 +7,7 @@
     "build": "webpack --config ./webpack.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
     "start": "npm run build && electron .",
-    "test": "mocha",
+    "test": "jest",
     "test:watch": "npm test --watch"
   },
   "keywords": [],
