@@ -25,7 +25,7 @@ describe('Electron testing', function() {
     }
   })
 
-it('should have a title', (done) => {
+it.skip('should have a title', (done) => {
     app.start().then(function () {
       // Check if the window is visible
       return app.browserWindow.isVisible()
