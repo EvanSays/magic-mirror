@@ -26,6 +26,7 @@ export const fetchDarkSkyData = () => {
       }
       return res
     }).then(res => res.json()).then(data => {
+      console.log(data);
       dispatch(setWeatherData(new DarkSkyData(data)))
     })
   }

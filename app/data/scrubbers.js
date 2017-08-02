@@ -19,11 +19,14 @@ export class NewsData{
 
 export class DarkSkyData{
   constructor(obj) {
-    this.city = obj.timezone.slice(obj.timezone.indexOf('/') + 1),
-    this.icon = darkSkyIconKeys[obj.currently.icon],
-    this.temp = Math.ceil(obj.currently.temperature),
-    this.hourly = obj.hourly.data.slice(1,4).map(hour => {
+    this.city = obj.timezone.slice(obj.timezone.indexOf('/') + 1), //currently
+    this.icon = darkSkyIconKeys[obj.currently.icon], //currently
+    this.temp = Math.ceil(obj.currently.temperature), //currently
+    this.hourly = obj.hourly.data.slice(1,4).map(hour => { //hourly
       return [ moment.unix(hour.time).format("h"), darkSkyIconKeys[hour.icon], Math.ceil(hour.apparentTemperature) ]
+    })
+    this.daily = obj.daily.data.map(day => {
+      return Object.assign({}, { high: Math.ceil(day.apparentTemperatureMax), low: Math.ceil(day.apparentTemperatureMin), icon: day.icon, day: moment.unix(day.time).format("ddd") } )
     })
   }
 }

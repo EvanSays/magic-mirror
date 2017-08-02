@@ -57,43 +57,74 @@ body {
 .weather .current {
   display: flex;
   justify-content: space-between;
-  font-size: 50px;
+  align-items: center;
+  font-size: 52px;
 }
 
 .weather .current h2 {
-  margin: 0 0 50px 50px;
   font-weight: 200;
 }
 
+.weather .current .current-high-low {
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-bottom: 15px;
+  margin-left: 12px;
+}
+
+.weather .current h3 {
+  font-size: 18px;
+}
+
 .weather .current .icon {
-  margin: 0 0 50px 0;
-  width: 180px;
-  height: 90px;
+  width: 200px;
+  height: 100px;
 }
 
 .weather p {
   font-size: 20px;
 }
 
-.weather .hourly-container {
+.weather .daily-container {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin-top: 24px;
 }
-
-.weather .hourly-container .hourly h2 {
+.weather .daily-container .high-low-container {
   display: flex;
   flex-direction: column;
-  font-size: 14px;
-  font-weight: 200;
+  align-items: center;
+  height: 180px;
+  justify-content: center;
 }
 
-.weather .hourly-container .hourly .icon {
-  width: 100px;
-  height: 50px;
+.weather .daily-container .daily .day-container{
+  height: 20px;
+  margin-bottom: auto;
+}
+
+.weather .daily-container .daily h2 {
+  font-size: 17px;
+}
+
+.weather .daily-container .daily h3 {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 200;
   margin: 10px 0 10px 0;
 }
 
+.weather .daily-container .daily .graph {
+  width: 20px;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 10px;
+}
 
 /*=======================================
 >>>>>>>>  DATE <<<<<<<<
@@ -220,9 +251,9 @@ body {
 
 .notifications .info-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   margin-left: 20px;
-  width: 100%
+  width: 100%;
 }
 
 .notifications h2 {
