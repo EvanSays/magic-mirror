@@ -24535,36 +24535,67 @@
 	    currentHigh = weatherObj.daily[0].high;
 	    currentLow = weatherObj.daily[0].low;
 	
-	    daily = weatherObj.daily.slice(1, 8).map(function (day, i) {
+	    daily = weatherObj.daily.map(function (day, i) {
 	      var diff = (day.high - day.low) * 3;
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'daily', key: i * 10 },
-	        _react2.default.createElement(
+	      if (i === 0) {
+	        return _react2.default.createElement(
 	          'div',
-	          { className: 'day-container' },
+	          { className: 'daily', key: i * 10 },
 	          _react2.default.createElement(
-	            'h2',
-	            { className: 'day' },
-	            day.day
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'high-low-container' },
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            day.high
+	            'div',
+	            { className: 'day-container' },
+	            _react2.default.createElement(
+	              'h2',
+	              { className: 'day' },
+	              'Today'
+	            )
 	          ),
-	          _react2.default.createElement('div', { className: 'graph', style: { height: diff + 'px' } }),
 	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            day.low
+	            'div',
+	            { className: 'high-low-container' },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              day.high
+	            ),
+	            _react2.default.createElement('div', { className: 'graph', style: { height: diff + 'px' } }),
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              day.low
+	            )
 	          )
-	        )
-	      );
+	        );
+	      } else {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'daily', key: i * 10 },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'day-container' },
+	            _react2.default.createElement(
+	              'h2',
+	              { className: 'day' },
+	              day.day
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'high-low-container' },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              day.high
+	            ),
+	            _react2.default.createElement('div', { className: 'graph', style: { height: diff + 'px' } }),
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              day.low
+	            )
+	          )
+	        );
+	      }
 	    });
 	  }
 	  return _react2.default.createElement(
@@ -24578,22 +24609,6 @@
 	        null,
 	        weatherObj.temp,
 	        '\xB0'
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'current-high-low' },
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          currentHigh,
-	          'H'
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          currentLow,
-	          'L'
-	        )
 	      ),
 	      _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: weatherObj.icon, autoplay: true })
 	    ),
@@ -25509,7 +25524,6 @@
 	    }).then(function (res) {
 	      return res.json();
 	    }).then(function (data) {
-	      console.log(data);
 	      dispatch(setWeatherData(new _scrubbers.DarkSkyData(data)));
 	    });
 	  };
@@ -25575,9 +25589,10 @@
 	
 	var fetchDateTodayData = exports.fetchDateTodayData = function fetchDateTodayData() {
 	  return function (dispatch) {
-	    var day = (0, _moment2.default)().format('dddd');
-	    var time = (0, _moment2.default)().format('h:mm:ss a');
-	    dispatch(setDateTodayData([day, time]));
+	    var time = (0, _moment2.default)().format('h:mm');
+	    var amPm = (0, _moment2.default)().format('a');
+	    var day = (0, _moment2.default)().format('dddd, MMMM Do');
+	    dispatch(setDateTodayData([time, amPm, day]));
 	  };
 	};
 	
@@ -41759,14 +41774,23 @@
 	        'div',
 	        { className: 'date' },
 	        _react2.default.createElement(
-	          'h1',
+	          'span',
 	          null,
-	          this.props.dateObj[0]
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            this.props.dateObj[0]
+	          ),
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            this.props.dateObj[1]
+	          )
 	        ),
 	        _react2.default.createElement(
-	          'h2',
+	          'h3',
 	          null,
-	          this.props.dateObj[1]
+	          this.props.dateObj[2]
 	        )
 	      );
 	    }
@@ -42022,13 +42046,9 @@
 	          'div',
 	          { className: 'info-container' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'title' },
-	            _react2.default.createElement(
-	              'h2',
-	              null,
-	              obj.title
-	            )
+	            'h2',
+	            null,
+	            obj.title
 	          ),
 	          _react2.default.createElement(
 	            'div',

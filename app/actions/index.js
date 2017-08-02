@@ -26,7 +26,6 @@ export const fetchDarkSkyData = () => {
       }
       return res
     }).then(res => res.json()).then(data => {
-      console.log(data);
       dispatch(setWeatherData(new DarkSkyData(data)))
     })
   }
@@ -78,9 +77,10 @@ export const setGifyData = (dataObj) => {
 
 export const fetchDateTodayData = () => {
   return (dispatch) => {
-    const day = moment().format('dddd');
-    const time = moment().format('h:mm:ss a');
-    dispatch(setDateTodayData([day, time]))
+    const time = moment().format('h:mm');
+    const amPm = moment().format('a');
+    const day = moment().format('dddd, MMMM Do');
+    dispatch(setDateTodayData([time, amPm, day]))
   }
 }
 
