@@ -29,6 +29,6 @@ describe('AuthCard component tests', () => {
 
   it('should return the correct information', () => {
     expect(wrapper.find('h2').text()).toEqual("Update README.md")
-    expect(wrapper.find('h3').text()).toEqual("4 days ago")
+    expect(wrapper.find('h3').length).toEqual(1)
   })
 })

@@ -24526,6 +24526,7 @@
 	var WeatherCard = function WeatherCard(props) {
 	  var weatherObj = props.weatherObj;
 	
+	  console.log(weatherObj);
 	
 	  var daily = [];
 	  var currentHigh = [];
@@ -24536,7 +24537,9 @@
 	    currentLow = weatherObj.daily[0].low;
 	
 	    daily = weatherObj.daily.map(function (day, i) {
+	
 	      var diff = (day.high - day.low) * 3;
+	
 	      if (i === 0) {
 	        return _react2.default.createElement(
 	          'div',

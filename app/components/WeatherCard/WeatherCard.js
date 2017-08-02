@@ -14,7 +14,9 @@ const WeatherCard = (props) => {
     currentLow = weatherObj.daily[0].low
 
     daily = weatherObj.daily.map((day, i) => {
+
       const diff = (day.high - day.low) * 3
+
       if(i === 0) {
         return <div className="daily" key={i * 10}>
           <div className='day-container'>
@@ -27,16 +29,16 @@ const WeatherCard = (props) => {
           </div>
         </div>
       } else {
-      return <div className="daily" key={i * 10}>
-        <div className='day-container'>
-          <h2 className='day'>{day.day}</h2>
+        return <div className="daily" key={i * 10}>
+          <div className='day-container'>
+            <h2 className='day'>{day.day}</h2>
+          </div>
+          <div className='high-low-container'>
+            <h3>{day.high}</h3>
+            <div className='graph' style={{height: diff+'px'}}></div>
+            <h3>{day.low}</h3>
+          </div>
         </div>
-        <div className='high-low-container'>
-          <h3>{day.high}</h3>
-          <div className='graph' style={{height: diff+'px'}}></div>
-          <h3>{day.low}</h3>
-        </div>
-      </div>
       }
     })
   }
