@@ -24526,28 +24526,47 @@
 	var WeatherCard = function WeatherCard(props) {
 	  var weatherObj = props.weatherObj;
 	
-	  var hourly = [];
-	  if (weatherObj.hourly) {
-	    hourly = weatherObj.hourly.map(function (hour, i) {
+	
+	  var daily = [];
+	  var currentHigh = [];
+	  var currentLow = [];
+	
+	  if (weatherObj.daily) {
+	    currentHigh = weatherObj.daily[0].high;
+	    currentLow = weatherObj.daily[0].low;
+	
+	    daily = weatherObj.daily.slice(1, 8).map(function (day, i) {
+	      var diff = (day.high - day.low) * 3;
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'hourly', key: i * 10 },
+	        { className: 'daily', key: i * 10 },
 	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          hour[0]
+	          'div',
+	          { className: 'day-container' },
+	          _react2.default.createElement(
+	            'h2',
+	            { className: 'day' },
+	            day.day
+	          )
 	        ),
-	        _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: hour[1], autoplay: true }),
 	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          hour[2],
-	          '\xB0'
+	          'div',
+	          { className: 'high-low-container' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            day.high
+	          ),
+	          _react2.default.createElement('div', { className: 'graph', style: { height: diff + 'px' } }),
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            day.low
+	          )
 	        )
 	      );
 	    });
 	  }
-	
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -24560,6 +24579,22 @@
 	        weatherObj.temp,
 	        '\xB0'
 	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'current-high-low' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          currentHigh,
+	          'H'
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          currentLow,
+	          'L'
+	        )
+	      ),
 	      _react2.default.createElement(_reactSkycons2.default, { className: 'icon', color: 'white', icon: weatherObj.icon, autoplay: true })
 	    ),
 	    _react2.default.createElement(
@@ -24569,8 +24604,8 @@
 	    ),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'hourly-container' },
-	      hourly
+	      { className: 'daily-container' },
+	      daily
 	    )
 	  );
 	};
@@ -25474,6 +25509,7 @@
 	    }).then(function (res) {
 	      return res.json();
 	    }).then(function (data) {
+	      console.log(data);
 	      dispatch(setWeatherData(new _scrubbers.DarkSkyData(data)));
 	    });
 	  };
@@ -25597,8 +25633,15 @@
 	var DarkSkyData = exports.DarkSkyData = function DarkSkyData(obj) {
 	  _classCallCheck(this, DarkSkyData);
 	
-	  this.city = obj.timezone.slice(obj.timezone.indexOf('/') + 1), this.icon = darkSkyIconKeys[obj.currently.icon], this.temp = Math.ceil(obj.currently.temperature), this.hourly = obj.hourly.data.slice(1, 4).map(function (hour) {
+	  this.city = obj.timezone.slice(obj.timezone.indexOf('/') + 1), //currently
+	  this.icon = darkSkyIconKeys[obj.currently.icon], //currently
+	  this.temp = Math.ceil(obj.currently.temperature), //currently
+	  this.hourly = obj.hourly.data.slice(1, 4).map(function (hour) {
+	    //hourly
 	    return [_moment2.default.unix(hour.time).format("h"), darkSkyIconKeys[hour.icon], Math.ceil(hour.apparentTemperature)];
+	  });
+	  this.daily = obj.daily.data.map(function (day) {
+	    return Object.assign({}, { high: Math.ceil(day.apparentTemperatureMax), low: Math.ceil(day.apparentTemperatureMin), icon: day.icon, day: _moment2.default.unix(day.time).format("ddd") });
 	  });
 	};
 	
