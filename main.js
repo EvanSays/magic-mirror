@@ -12,9 +12,11 @@ function createWindow () {
 
   win.webContents.on('did-finish-load', (event) => {
     win.maximize()
-    win.setFullScreen(true)
+    // win.setFullScreen(true)
     win.show()
   })
+
+
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
@@ -22,14 +24,16 @@ function createWindow () {
     slashes: true
   }))
 
-  // win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
   win.on('closed', () => {
     win = null
   })
 }
 
-app.on('ready', createWindow)
+app.on('ready', function () {
+  createWindow()
+})
 
 app.on('window-all-closed', () => {
 
