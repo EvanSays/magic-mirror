@@ -10,10 +10,7 @@ const AuthCard = (props) => {
           <div className='pull-request-icon'></div>
         </div>
         <div className='info-container'>
-          <div className='title'>
             <h2>{obj.title}</h2>
-          </div>
-
           <div className='avatar-date-container'>
             <img className='avatar' src={obj.avatar} alt="user avatar"/>
             <h3>{moment(obj.created).fromNow()}</h3>

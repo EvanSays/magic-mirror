@@ -15,8 +15,11 @@ class DateToday extends Component {
   render(){
     return(
       <div className="date">
-        <h1>{this.props.dateObj[0]}</h1>
-        <h2>{this.props.dateObj[1]}</h2>
+        <span>
+          <h1>{this.props.dateObj[0]}</h1>
+          <h2>{this.props.dateObj[1]}</h2>
+        </span>
+        <h3>{this.props.dateObj[2]}</h3>
       </div>
     )
   }
