@@ -35,7 +35,7 @@ body {
   width: 100vw;
   overflow-y: hidden;
   display: grid;
-  grid-template-columns: 50px 1fr 1fr 1fr 1fr 50px;
+  grid-template-columns: 5px 1fr 1fr 1fr 1fr 15px;
   grid-template-rows: 50px 1fr 1fr 1fr 1fr 50px;
   text-align: center;
 }
@@ -47,7 +47,7 @@ body {
 
 .weather {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 2 / span 2;
   transform: translateX(-550px);
   animation: weather 5s 3s forwards;
   justify-self: start;
@@ -124,7 +124,7 @@ body {
 
 .date {
   grid-column: 5;
-  grid-row: 2;
+  grid-row: 2 / span 2;
   transform: translateX(500px);
   animation: date 5s 3s forwards;
   justify-self: end;
@@ -162,15 +162,11 @@ body {
 
 .news {
   grid-column: 2 / span 2;
-  grid-row: 5;
+  grid-row: 4 / span 2;
   align-content: end;
-  align-self: start;
-  text-align: left;
   transform: translateX(-1200px);
   animation: news 5s 3s forwards;
-  max-height: 250px;
   align-self: end;
-  justify-self: start;
 }
 
 .news .wrapper {
@@ -188,6 +184,11 @@ body {
   align-content: end;
 }
 
+.news .wrapper .header p {
+  margin: 0 5px 0 5px;
+  font-size: 23px;
+}
+
 .news .wrapper .header h3,
 .news .wrapper .header h2 {
   font-weight: 200;
@@ -196,10 +197,6 @@ body {
   text-align: left;
 }
 
-.news .wrapper .header p {
-  margin: 0 5px 0 5px;
-  font-size: 23px;
-}
 
 
 /*=======================================
@@ -208,7 +205,7 @@ body {
 
 .gif {
   grid-column: 5;
-  grid-row: 5;
+  grid-row: 4 / span 2;
   align-content: end;
   align-self: start;
   text-align: left;
@@ -230,7 +227,7 @@ body {
 
 .notifications {
   grid-column: 5;
-  grid-row: 5;
+  grid-row: 4 / span 2;
   transform: translateX(550px);
   animation: git 5s 3s forwards;
   justify-self: end;
@@ -300,7 +297,6 @@ body {
   border-radius: 5px;
   margin-right: 15px;
 }
-
 
 /*=======================================
 >>>>>>>>  Key Frames  <<<<<<<<

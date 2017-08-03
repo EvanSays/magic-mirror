@@ -24526,7 +24526,6 @@
 	var WeatherCard = function WeatherCard(props) {
 	  var weatherObj = props.weatherObj;
 	
-	  console.log(weatherObj);
 	
 	  var daily = [];
 	  var currentHigh = [];
@@ -41888,7 +41887,7 @@
 	
 	      setInterval(function () {
 	        _this2.props.getAuthData();
-	      }, 1000 * 60 * 30);
+	      }, 1000 * 300);
 	    }
 	  }, {
 	    key: 'componentWillMount',
