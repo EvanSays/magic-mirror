@@ -52,7 +52,6 @@ body {
   animation: weather 5s 3s forwards;
   justify-self: start;
   align-self: start;
-  background-color: rgba(255,255,255,.1);
 }
 
 .weather .current {
@@ -130,7 +129,6 @@ body {
   animation: date 5s 3s forwards;
   justify-self: end;
   align-self: start;
-  background-color: rgba(255,255,255,.1);
 }
 
 .date span {
@@ -169,7 +167,6 @@ body {
   transform: translateX(-1200px);
   animation: news 5s 3s forwards;
   align-self: end;
-  background-color: rgba(255,255,255,.1);
 }
 
 .news .wrapper {
@@ -235,7 +232,6 @@ body {
   animation: git 5s 3s forwards;
   justify-self: end;
   align-self: end;
-  background-color: rgba(255,255,255,.1);
 }
 
 .notifications header {
