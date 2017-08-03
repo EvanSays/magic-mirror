@@ -123,7 +123,7 @@ body {
 ========================================*/
 
 .date {
-  grid-column: 5;
+  grid-column: 4 / span 2;
   grid-row: 2 / span 2;
   transform: translateX(500px);
   animation: date 5s 3s forwards;
