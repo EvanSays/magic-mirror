@@ -5,15 +5,14 @@ module.exports = {
   devtool: '#source-map',
   context: __dirname,
    entry: [
-     './app/index.js'
+     './app/index.js' // starting point
    ],
    output: {
-     path: __dirname,
-     filename: 'bundle.js',
+     path: __dirname, // output directory
+     filename: 'bundle.js', // filename to use for the ouput file
      publicPath: '/'
    },
-   target: 'electron',
-
+   target: 'electron-main', // cam compile for multiple places
    module: {
      loaders: [{
        test: /.jsx?$/,
