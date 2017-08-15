@@ -1,12 +1,12 @@
 ## Yung Magic Mirror
 
-Running off a raspberry pi, the mirror displays current and daily weather, news, a clock, and github pull request notifications. 
+Running off a raspberry pi, the mirror displays current and daily weather, news, a clock, and github pull request notifications.
 
 ### Background / About
 
-I wanted to combine my love of hardware with the JavaScript skills I have learned in the past 4 months at Turing Software and Design. 
+I wanted to combine my love of hardware with the JavaScript skills I have learned in the past 4 months at Turing Software and Design.
 
-The mirror is designed to run off a single Raspberry Pi 3 with Rasberian OS. Electron bundles the React/Redux program, enabling the software to run on the pi. 
+The mirror is designed to run off a single Raspberry Pi 3 with Rasberian OS. Electron bundles the React/Redux program, enabling the software to run on the pi.
 
 ### APIs Used
 
@@ -20,7 +20,7 @@ The mirror is designed to run off a single Raspberry Pi 3 with Rasberian OS. Ele
 - 27" LED Monitor
 - Two way mirror
 
-### Primary JavaScript Technoligies Used
+### Primary JavaScript Technologies Used
 
 - React
 - Redux
@@ -33,7 +33,7 @@ The mirror is designed to run off a single Raspberry Pi 3 with Rasberian OS. Ele
 8/2/17
 ##### Users
 Currently I would like to focus on a new user experience, such as enabling them a clean and easy install of the software.
- 
+
 ##### Performance
 I am noticing the cpu on the pi to run upwards of 60% and also some minor heating issues on there as well. I plan to focus on making the React/Redux code to run more efficient.
 
