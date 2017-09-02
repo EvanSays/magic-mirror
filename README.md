@@ -47,4 +47,4 @@ I am noticing the cpu on the pi to run upwards of 60% and also some minor heatin
 
 #### Main view:
 ![screenshot1](https://github.com/EvanSays/magic-mirror/blob/master/main_view.png)
-![fullbuild](https://github.com/EvanSays/magic-mirror/blob/master/full_build.png)
+![fullbuild](https://github.com/EvanSays/magic-mirror/blob/master/full_build.jpeg)
