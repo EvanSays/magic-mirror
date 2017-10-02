@@ -1,2 +1,5 @@
 node_modules/
 /app/data/apiKeys
+bundle.js
+bundle.js.map
+
