@@ -34,14 +34,14 @@ export class AuthData {
 }
 
 export const darkSkyIconKeys = {
-  'clear-day': 'CLEAR_DAY',
-  'clear-night': 'CLEAR_NIGHT',
-  'partly-cloudy-day': 'PARTLY_CLOUDY_DAY',
-  'partly-cloudy-night': 'PARTLY_CLOUDY_NIGHT',
-  'cloudy': 'CLOUDY',
-  'rain': 'RAIN',
-  'sleet': 'SLEET',
-  'snow': 'SNOW',
-  'wind': 'WIND',
-  'fog': 'FOG'
+  'clear-day': 'Sun',
+  'clear-night': 'Moon',
+  'partly-cloudy-day': 'Cloud-Sun',
+  'partly-cloudy-night': 'Cloud-Moon',
+  'cloudy': 'Cloud',
+  'rain': 'Cloud-Rain',
+  'sleet': 'Cloud-Snow',
+  'snow': 'Sowflake',
+  'wind': 'Wind',
+  'fog': 'Cloud-Fog-Alt'
 }

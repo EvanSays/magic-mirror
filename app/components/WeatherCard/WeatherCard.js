@@ -1,21 +1,20 @@
 import React from 'react'
-import Skycons from 'react-skycons'
 
 const WeatherCard = (props) => {
 
   const { weatherObj } = props;
-
+  
   let daily = [];
   let currentHigh = [];
   let currentLow = [];
-
+  
   if (weatherObj.daily) {
-    currentHigh = weatherObj.daily[0].high
-    currentLow = weatherObj.daily[0].low
+    currentHigh = weatherObj.daily[0].high;
+    currentLow = weatherObj.daily[0].low;
 
     daily = weatherObj.daily.map((day, i) => {
 
-      const diff = (day.high - day.low) * 3
+      const diff = (day.high - day.low) * 3;
 
       if(i === 0) {
         return <div className="daily" key={i * 10}>
@@ -42,11 +41,12 @@ const WeatherCard = (props) => {
       }
     })
   }
+  
   return (
     <div>
       <div className="current">
         <h2>{weatherObj.temp}°</h2>
-        <Skycons className='icon' color='white' icon={weatherObj.icon} autoplay={true}/>
+        <img className='icon' src={`./app/assets/icons/SVG/${props.weatherObj.icon}.svg`} alt="weather icon"/>
       </div>
       <p>{weatherObj.city}</p>
       <div className="daily-container">
