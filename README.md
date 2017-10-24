@@ -2,6 +2,15 @@
 
 Running off a raspberry pi, the mirror displays current and daily weather, news, a clock, and github pull request notifications.
 
+### To Install
+
+1) Clone down repo
+```
+cd magic-mirror
+npm install
+npm start
+```
+
 ### Background / About
 
 I wanted to combine my love of hardware with the JavaScript skills I have learned in the past 4 months at Turing Software and Design.
