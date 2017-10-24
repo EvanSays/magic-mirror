@@ -2,7 +2,7 @@
 
 Running off a raspberry pi, the mirror displays current and daily weather, news, a clock, and github pull request notifications.
 
-### To Install
+### To Install / Run
 
 1) Clone down repo
 ```
